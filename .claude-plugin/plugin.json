@@ -1,0 +1,23 @@
+{
+  "name": "claude-architect-marketplace",
+  "version": "1.0.0",
+  "description": "A curated marketplace of plugins for software architecture design, analysis, documentation, and diagramming. Optimized for token efficiency and quality output.",
+  "author": {
+    "name": "Claude Architect",
+    "email": "architect@example.com",
+    "url": "https://github.com/CrazyMeal/claude-architect-marketplace"
+  },
+  "homepage": "https://github.com/CrazyMeal/claude-architect-marketplace",
+  "repository": "https://github.com/CrazyMeal/claude-architect-marketplace",
+  "license": "MIT",
+  "keywords": [
+    "architecture",
+    "software-design",
+    "diagrams",
+    "documentation",
+    "analysis",
+    "refactoring",
+    "brainstorming",
+    "system-design"
+  ]
+}

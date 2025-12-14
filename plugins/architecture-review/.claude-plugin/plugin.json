@@ -1,0 +1,11 @@
+{
+  "name": "architecture-review",
+  "version": "1.0.0",
+  "description": "Review and critique architectural decisions against best practices, identify risks, and suggest improvements.",
+  "author": {
+    "name": "Claude Architect",
+    "email": "architect@example.com"
+  },
+  "license": "MIT",
+  "keywords": ["review", "critique", "best-practices", "risks", "improvements", "quality"]
+}
