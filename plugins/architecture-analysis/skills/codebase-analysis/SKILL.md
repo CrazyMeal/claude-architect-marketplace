@@ -1,35 +1,84 @@
 ---
 name: codebase-analysis
-description: Analyze codebase structure and patterns. Use when users ask about how code is organized or want to understand existing architecture.
+description: Analyze existing system architectures. Activates when exploring codebases, assessing technical debt, planning refactoring, or discussing system understanding.
 allowed-tools: Read, Grep, Glob, Bash
+model: opus
 ---
 
 # Codebase Analysis
 
-Provide architectural insights when users explore or question existing code.
+Provide deep architectural insights when examining existing systems.
 
-## Activation Triggers
+## Activation Contexts
 
-- Questions about code organization
-- Requests to explain how something works
-- Technical debt discussions
-- Refactoring planning
-- Onboarding to a new codebase
+- Exploring a new or unfamiliar codebase
+- Assessing technical debt
+- Planning refactoring or migration
+- Understanding why things are built a certain way
+- Evaluating code quality
+- Investigating architectural decisions
 
-## Analysis Techniques
+## Analysis Capabilities
 
-1. **Directory Analysis**: Use Glob to map structure
-2. **Pattern Search**: Use Grep to find conventions
-3. **File Inspection**: Use Read for key files
-4. **Dependency Check**: Examine package/module files
+### Structural Analysis
+When examining code structure:
+- Identify module boundaries and their clarity
+- Detect layering patterns (or violations)
+- Map dependency directions
+- Assess cohesion and coupling
+- Find circular dependencies
 
-## Response Format
+### Pattern Recognition
+Identify in the codebase:
+- Architectural patterns in use
+- Tactical DDD patterns (aggregates, repositories, etc.)
+- Design patterns (and anti-patterns)
+- Consistency of pattern application
 
-When analyzing code, structure responses as:
+### Quality Indicators
+Look for:
+- God classes/modules
+- Feature envy
+- Shotgun surgery patterns
+- Primitive obsession
+- Dead code
+- Inconsistent abstraction levels
 
-1. **What exists**: Factual description of current state
-2. **How it works**: Flow and interaction explanation
-3. **Why it matters**: Architectural implications
-4. **What to consider**: Relevant trade-offs or concerns
+### Evolution Markers
+Assess:
+- How easily can this change?
+- Where are the extension points?
+- What's entangled that shouldn't be?
+- What enables or prevents modularization?
 
-Keep responses focused on the specific question. Avoid unsolicited comprehensive reviews.
+## Response Approach
+
+1. **Evidence-based**: Always reference specific files/patterns
+2. **Contextual**: Consider why things might be this way
+3. **Actionable**: Focus on what can be improved
+4. **Prioritized**: Highlight what matters most
+
+## Output Patterns
+
+For structural questions:
+- Describe the actual structure with evidence
+- Compare to intended/ideal patterns
+- Note implications for maintenance/evolution
+
+For quality questions:
+- Identify specific issues with locations
+- Assess impact and urgency
+- Suggest concrete improvements
+
+For understanding questions:
+- Explain the current design
+- Identify the likely original intent
+- Note any drift or decay
+
+## Dialogue Style
+
+- Ask clarifying questions about the codebase context
+- Share observations before conclusions
+- Present findings with confidence but acknowledge uncertainty
+- Offer to dive deeper on specific areas
+- Connect observations to practical implications

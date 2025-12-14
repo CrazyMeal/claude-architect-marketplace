@@ -1,8 +1,8 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "claude-architect-marketplace",
-  "version": "1.0.0",
-  "description": "A curated collection of plugins for software architecture design, analysis, documentation, and diagramming. Built for experienced software engineers who need quality architectural artifacts before code production.",
+  "version": "2.0.0",
+  "description": "Expert-level architecture plugins for senior engineers. Deep knowledge of DDD, distributed systems, C4 model, ATAM, and industry-standard documentation formats. Uses Claude Opus for sophisticated architectural reasoning.",
   "owner": {
     "name": "Claude Architect",
     "email": "architect@example.com"
@@ -10,52 +10,52 @@
   "plugins": [
     {
       "name": "architecture-design",
-      "description": "Design software architectures from scratch. Create system designs, component structures, and technical specifications with structured thinking and industry patterns.",
-      "version": "1.0.0",
+      "description": "Collaborative system design with deep architectural knowledge. Covers DDD (bounded contexts, aggregates), distributed systems patterns (saga, outbox, CQRS), 12-factor apps, quality attribute trade-offs, and evolutionary architecture.",
+      "version": "2.0.0",
       "author": { "name": "Claude Architect" },
       "source": "./plugins/architecture-design",
       "category": "design",
-      "tags": ["architecture", "design", "system-design", "components", "patterns"],
+      "tags": ["architecture", "ddd", "distributed-systems", "microservices", "event-driven", "12-factor", "system-design"],
       "strict": false
     },
     {
       "name": "architecture-analysis",
-      "description": "Analyze existing codebases and architectures. Identify patterns, anti-patterns, dependencies, and improvement opportunities in current systems.",
-      "version": "1.0.0",
+      "description": "Deep codebase analysis using coupling metrics, pattern recognition, and technical debt assessment. Identifies bounded contexts, anti-patterns, and evolution opportunities with evidence-based findings.",
+      "version": "2.0.0",
       "author": { "name": "Claude Architect" },
       "source": "./plugins/architecture-analysis",
       "category": "analysis",
-      "tags": ["analysis", "codebase", "dependencies", "patterns", "anti-patterns"],
+      "tags": ["analysis", "technical-debt", "coupling", "patterns", "anti-patterns", "reverse-engineering"],
       "strict": false
     },
     {
       "name": "diagrams-as-code",
-      "description": "Generate architecture diagrams as code using Mermaid, PlantUML, D2, and other formats. Create visual representations of systems, flows, and structures.",
-      "version": "1.0.0",
+      "description": "C4 model diagrams with proper abstraction levels (Context, Container, Component, Code), plus deployment and dynamic diagrams. Supports PlantUML, Mermaid, D2, and Structurizr DSL.",
+      "version": "2.0.0",
       "author": { "name": "Claude Architect" },
       "source": "./plugins/diagrams-as-code",
       "category": "visualization",
-      "tags": ["diagrams", "mermaid", "plantuml", "d2", "visualization", "flowcharts"],
+      "tags": ["c4-model", "plantuml", "mermaid", "d2", "structurizr", "architecture-diagrams"],
       "strict": false
     },
     {
       "name": "architecture-docs",
-      "description": "Generate architecture documentation including ADRs, C4 model docs, technical specs, and design documents. Structured templates for consistent documentation.",
-      "version": "1.0.0",
+      "description": "Industry-standard documentation: ADRs (MADR format with decision drivers), technical specifications (quality attributes, operational concerns), and RFCs. Follows documentation-as-architecture principles.",
+      "version": "2.0.0",
       "author": { "name": "Claude Architect" },
       "source": "./plugins/architecture-docs",
       "category": "documentation",
-      "tags": ["documentation", "adr", "c4-model", "technical-specs", "design-docs"],
+      "tags": ["adr", "madr", "tech-spec", "rfc", "documentation", "decision-records"],
       "strict": false
     },
     {
       "name": "architecture-review",
-      "description": "Review and critique architectural decisions. Evaluate designs against best practices, identify risks, and suggest improvements.",
-      "version": "1.0.0",
+      "description": "Rigorous architecture evaluation using ATAM-inspired quality attribute analysis. Identifies trade-offs, sensitivity points, and risks. Provides prioritized recommendations with fitness function suggestions.",
+      "version": "2.0.0",
       "author": { "name": "Claude Architect" },
       "source": "./plugins/architecture-review",
       "category": "review",
-      "tags": ["review", "critique", "best-practices", "risks", "improvements"],
+      "tags": ["atam", "quality-attributes", "trade-offs", "risk-assessment", "fitness-functions", "review"],
       "strict": false
     }
   ]

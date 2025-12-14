@@ -1,22 +1,22 @@
 # Claude Architect Marketplace
 
-A curated marketplace of Claude Code plugins for software architecture design, analysis, documentation, and diagramming.
+Expert-level architecture plugins for Claude Code. Built for senior engineers who need sophisticated architectural dialogue, not templated outputs.
 
-## Purpose
+## Philosophy
 
-This marketplace provides tools for experienced software engineers to produce high-quality architectural artifacts before code production:
+These plugins enable **peer-level architectural conversations**. They bring deep knowledge of:
 
-- **Design** new system architectures with structured thinking
-- **Analyze** existing codebases for patterns and issues
-- **Generate** diagrams as code (Mermaid, PlantUML, D2)
-- **Document** decisions (ADRs), specifications, and RFCs
-- **Review** architectural proposals and assess risks
+- **Domain-Driven Design**: Bounded contexts, aggregates, context mapping, anti-corruption layers
+- **Distributed Systems**: CAP/PACELC, saga patterns, event sourcing, CQRS, outbox pattern
+- **Cloud-Native**: 12-factor apps, container patterns, service mesh, observability
+- **Architecture Evaluation**: ATAM-style quality attribute analysis, trade-off identification, fitness functions
+- **Industry Standards**: C4 model, ADRs (MADR format), technical specifications
+
+All plugins use **Claude Opus** for the deepest architectural reasoning.
 
 ## Installation
 
-### Add to Your Project
-
-Add this marketplace to your project's `.claude/settings.json`:
+Add to your project's `.claude/settings.json`:
 
 ```json
 {
@@ -38,196 +38,187 @@ Add this marketplace to your project's `.claude/settings.json`:
 }
 ```
 
-### Install Individual Plugins
-
-```bash
-claude plugin install architecture-design@architect
-claude plugin install diagrams-as-code@architect
-```
-
-## Available Plugins
+## Plugins
 
 ### architecture-design
 
-Design software architectures from scratch.
+Collaborative system design drawing on DDD, distributed systems theory, and evolutionary architecture.
 
 **Commands:**
-- `/design-system <name>` - Design a new system architecture
-- `/design-component <name>` - Design a specific component
+- `/design-system <name>` - Full system architecture with bounded contexts, quality attributes
+- `/design-component <name>` - Component design with DDD tactical patterns, integration strategies
 
-**Agent:** `system-architect` - Expert system design assistance
+**Agent:** `system-architect` - Principal architect for design discussions
 
-**Skill:** `system-design` - Automatic guidance during architecture discussions
+**Knowledge includes:**
+- Architectural styles (microservices, event-driven, cell-based, modular monolith)
+- DDD strategic and tactical patterns
+- CAP/PACELC implications
+- Saga patterns (orchestration vs choreography)
+- 12-factor and beyond-12-factor principles
+- Conway's Law and team topology considerations
 
 ---
 
 ### architecture-analysis
 
-Analyze existing codebases and architectures.
+Deep codebase analysis with pattern recognition and technical debt assessment.
 
 **Commands:**
-- `/analyze-codebase [dir]` - Full architecture analysis
-- `/analyze-dependencies [file]` - Dependency audit
+- `/analyze-codebase [dir]` - Structural analysis, domain model assessment, coupling metrics
+- `/analyze-dependencies [file]` - Architectural dependency analysis (not just version checking)
 
-**Agent:** `code-analyst` - Expert codebase analysis
+**Agent:** `code-analyst` - Principal engineer for reverse-engineering existing systems
 
-**Skill:** `codebase-analysis` - Automatic insights during code exploration
+**Capabilities:**
+- Coupling analysis (afferent/efferent, instability)
+- Pattern and anti-pattern detection
+- Technical debt categorization (reckless/prudent, deliberate/inadvertent)
+- Bounded context identification from code
+- Evolution readiness assessment
 
 ---
 
 ### diagrams-as-code
 
-Generate architecture diagrams in multiple formats.
+C4 model diagrams with proper abstraction discipline.
 
 **Commands:**
-- `/diagram <type> <format>` - Generate a diagram
-- `/diagram-from-code <type> [dir]` - Generate from codebase
-- `/c4-diagram <level>` - Generate C4 model diagrams
+- `/diagram <type> [format]` - Architecture diagrams with purpose-driven selection
+- `/c4-diagram <level>` - C4 diagrams: Context, Container, Component, plus Deployment and Dynamic
+- `/diagram-from-code <type> [dir]` - Generate diagrams from existing code
 
-**Agent:** `diagram-assistant` - Expert diagram creation
+**Agent:** `diagram-assistant` - Architecture visualization expert
 
-**Skill:** `diagram-generation` - Automatic diagram suggestions
+**C4 Knowledge:**
+- Abstraction levels and when to use each
+- Notation standards (PlantUML C4 library, Mermaid)
+- Supplementary diagrams (deployment, dynamic)
+- Structurizr DSL for architecture-as-code
 
-**Supported Formats:**
-- Mermaid (default, GitHub-compatible)
-- PlantUML (detailed, C4 support)
-- D2 (modern, clean)
+**Formats:** PlantUML (recommended for C4), Mermaid (docs), D2 (presentations)
 
 ---
 
 ### architecture-docs
 
-Generate architecture documentation.
+Industry-standard documentation following best practices.
 
 **Commands:**
-- `/adr <title>` - Create an Architecture Decision Record
-- `/tech-spec <feature>` - Create a technical specification
-- `/rfc <title>` - Create a Request for Comments
+- `/adr <title>` - MADR format with decision drivers, alternatives, consequences
+- `/tech-spec <feature>` - Specification with quality attributes, operational concerns, risks
+- `/rfc <title>` - Request for Comments for major proposals
 
-**Agent:** `technical-writer` - Expert documentation assistance
+**Agent:** `technical-writer` - Senior architect focused on documentation
 
-**Skill:** `documentation` - Automatic documentation support
-
-**Includes Templates:** ADR, Tech Spec
+**Documentation Knowledge:**
+- MADR (Markdown Any Decision Record) format
+- Y-statement format for decisions
+- Quality attribute specifications
+- C4 documentation practices
+- Runbook structure
 
 ---
 
 ### architecture-review
 
-Review and critique architectural decisions.
+Rigorous evaluation using quality attribute analysis.
 
 **Commands:**
-- `/review-architecture [doc]` - Full architecture review
-- `/review-adr <file>` - Review an ADR
-- `/risk-assessment [doc]` - Assess architectural risks
+- `/review-architecture [doc]` - ATAM-inspired review with quality scenarios
+- `/risk-assessment [doc]` - Comprehensive risk taxonomy and mitigation strategies
+- `/review-adr <file>` - ADR quality review
 
-**Agent:** `architecture-reviewer` - Expert review assistance
+**Agent:** `architecture-reviewer` - Principal architect for design evaluation
 
-**Skill:** `architecture-review` - Automatic feedback on shared designs
+**Evaluation Framework:**
+- Quality attribute scenarios (stimulus → response under conditions)
+- Sensitivity points and trade-off points
+- Risk categorization (technical, operational, organizational, external)
+- Fitness function recommendations
 
 ## Usage Examples
 
-### Design a New System
+### Designing with Context
 
 ```
-/design-system payment-service
+"I need to design an order processing system. We're expecting
+10K orders/day, need to integrate with three payment providers,
+and the team has strong Go experience but limited Kafka knowledge."
 
-Or describe what you need:
-"I need to design a payment processing system that handles
-subscriptions, one-time payments, and refunds."
+> The system-architect will ask about quality priorities,
+> explore bounded contexts, discuss event-driven vs synchronous
+> approaches, and consider your team constraints.
 ```
 
-### Analyze an Existing Codebase
+### Analyzing for Migration
 
 ```
-/analyze-codebase ./src
+"Analyze this codebase. We're considering extracting the billing
+domain into a separate service."
 
-Or ask naturally:
-"What patterns does this codebase use?"
-"Are there any architectural issues in this project?"
+> The code-analyst will identify bounded context boundaries,
+> assess coupling, find strangler fig seams, and evaluate
+> extraction readiness.
 ```
 
-### Generate Diagrams
+### C4 Documentation
 
 ```
-/diagram sequence mermaid
-/c4-diagram context
-/diagram-from-code module ./src
+"/c4-diagram container"
 
-Or describe what you need:
-"Create a sequence diagram showing the checkout flow"
-"Generate a C4 container diagram for our system"
+> Generates a proper C4 Container diagram with technology
+> annotations, relationship labels, and PlantUML C4 library syntax.
 ```
 
-### Create Documentation
+### MADR-Format ADRs
 
 ```
-/adr use-postgresql-for-persistence
-/tech-spec user-authentication
-/rfc migrate-to-microservices
+"/adr use-event-sourcing-for-orders"
 
-Or ask naturally:
-"Document our decision to use event sourcing"
-"Create a tech spec for the notification system"
+> Creates an ADR with decision drivers, considered options with
+> pros/cons, decision outcome, and consequences - following
+> MADR best practices.
 ```
 
-### Review Architecture
+### ATAM-Style Review
 
 ```
-/review-architecture ./docs/architecture.md
-/risk-assessment ./design/
-/review-adr ./docs/adrs/001-database-choice.md
+"/review-architecture ./docs/design.md"
 
-Or share a design:
-"What do you think of this architecture? [paste design]"
+> Conducts quality attribute analysis, identifies trade-offs
+> and sensitivity points, assesses risks, and provides
+> prioritized recommendations.
 ```
-
-## Token Optimization
-
-This marketplace is designed for token efficiency:
-
-1. **Concise prompts** - Commands produce structured output without verbose explanations
-2. **Model selection** - Uses `haiku` for simple tasks, `sonnet` for complex analysis
-3. **Focused output** - Templates ensure complete but not excessive documentation
-4. **Progressive detail** - Start with summaries, drill down as needed
 
 ## Quality Focus
 
-Quality is the primary success criterion:
+These plugins prioritize quality over quantity:
 
-- **Structured outputs** - Consistent, professional formats
-- **Best practices** - Industry-standard patterns and templates
-- **Review capability** - Built-in quality checks
-- **Complete artifacts** - Production-ready documentation
+- **Deep knowledge** embedded in prompts, not generic instructions
+- **Opus model** for sophisticated reasoning
+- **Industry standards** (C4, MADR, ATAM) properly applied
+- **Peer-level dialogue** rather than tutorial-style output
+- **Evidence-based** recommendations with specific references
 
-## Directory Structure
+## Structure
 
 ```
 claude-architect-marketplace/
 ├── .claude-plugin/
-│   ├── plugin.json           # Marketplace manifest
-│   └── marketplace.json      # Plugin catalog
+│   ├── plugin.json
+│   └── marketplace.json
 ├── plugins/
 │   ├── architecture-design/
-│   │   ├── .claude-plugin/plugin.json
-│   │   ├── commands/
-│   │   ├── agents/
-│   │   └── skills/
+│   │   ├── commands/     (design-system, design-component)
+│   │   ├── agents/       (system-architect)
+│   │   └── skills/       (system-design)
 │   ├── architecture-analysis/
 │   ├── diagrams-as-code/
 │   ├── architecture-docs/
 │   └── architecture-review/
 └── README.md
 ```
-
-## Contributing
-
-Contributions welcome. Please:
-
-1. Follow the existing plugin structure
-2. Keep prompts concise and focused
-3. Include examples in command files
-4. Test with various codebases
 
 ## License
 

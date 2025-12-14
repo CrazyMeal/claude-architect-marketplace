@@ -1,64 +1,178 @@
 ---
-description: Perform a risk assessment on an architecture or design
+description: Comprehensive architectural risk assessment with mitigation strategies
 argument-hint: [document-or-directory]
 allowed-tools: Read, Grep, Glob
-model: sonnet
+model: opus
 ---
 
 # Architecture Risk Assessment
 
-Identify and assess risks in an architecture.
+Systematic identification and analysis of architectural risks.
 
-## Risk Categories
+## Risk Taxonomy
 
-1. **Technical**: Technology choices, complexity, dependencies
-2. **Operational**: Deployment, monitoring, maintenance
-3. **Security**: Vulnerabilities, data protection
-4. **Performance**: Scalability, latency, throughput
-5. **Organizational**: Skills, ownership, coordination
+### Technical Risks
 
-## Risk Assessment Process
+**Complexity Risks**
+- Distributed system complexity (network partitions, consistency)
+- Integration complexity (multiple systems, protocols)
+- State management complexity (distributed state, caching)
 
-1. **Identify**: Find potential risks
-2. **Analyze**: Determine likelihood and impact
-3. **Prioritize**: Rank by severity
-4. **Mitigate**: Suggest countermeasures
+**Technology Risks**
+- Immature technology (limited production experience)
+- Technology lock-in (vendor, framework, cloud)
+- Skill gap (team unfamiliar with key technologies)
+- Deprecated dependencies (end-of-life components)
+
+**Performance Risks**
+- Scaling bottlenecks (single points of contention)
+- Latency amplification (deep call chains)
+- Resource exhaustion (memory, connections, file handles)
+
+**Data Risks**
+- Data consistency (distributed transactions, eventual consistency)
+- Data loss (inadequate backup, replication lag)
+- Data corruption (race conditions, partial writes)
+
+### Operational Risks
+
+**Deployment Risks**
+- Deployment coupling (all-or-nothing deployments)
+- Rollback difficulty (stateful changes, schema migrations)
+- Environment parity (dev/staging/prod differences)
+
+**Observability Risks**
+- Debugging difficulty (distributed tracing gaps)
+- Alert fatigue (noisy alerting)
+- Blind spots (unmonitored components)
+
+**Recovery Risks**
+- MTTR (mean time to recovery)
+- Disaster recovery (regional failover capability)
+- Data recovery (backup/restore procedures)
+
+### Organizational Risks
+
+**Team Risks**
+- Knowledge silos (single points of knowledge failure)
+- Conway's Law misalignment (architecture vs org structure)
+- Cross-team dependencies (coordination overhead)
+
+**Process Risks**
+- Change management (how changes are coordinated)
+- Incident response (on-call, escalation procedures)
+- Documentation debt (tribal knowledge)
+
+### External Risks
+
+**Dependency Risks**
+- Third-party service outages
+- API deprecation (external APIs changing)
+- Vendor viability (vendor going out of business)
+
+**Compliance Risks**
+- Regulatory requirements (GDPR, HIPAA, SOC2)
+- Data residency (geographic constraints)
+- Audit requirements (logging, access controls)
+
+## Assessment Process
+
+### 1. Risk Identification
+For each component and interaction:
+- What can fail?
+- What are the failure modes?
+- What are the blast radius implications?
+
+### 2. Likelihood Assessment
+
+| Level | Criteria |
+|-------|----------|
+| High | Expected to occur (>50% in next year) |
+| Medium | Possible (10-50% in next year) |
+| Low | Unlikely (<10% in next year) |
+
+### 3. Impact Assessment
+
+| Level | Criteria |
+|-------|----------|
+| High | Service unavailable, data loss, security breach |
+| Medium | Degraded service, partial functionality loss |
+| Low | Minor inconvenience, workaround available |
+
+### 4. Severity Matrix
+
+| | Low Impact | Medium Impact | High Impact |
+|---|------------|---------------|-------------|
+| **High Likelihood** | Medium | High | Critical |
+| **Medium Likelihood** | Low | Medium | High |
+| **Low Likelihood** | Low | Low | Medium |
+
+### 5. Mitigation Strategies
+
+For each significant risk:
+- **Avoid**: Eliminate the risk source
+- **Mitigate**: Reduce likelihood or impact
+- **Transfer**: Shift risk (insurance, SLAs)
+- **Accept**: Acknowledge and monitor
 
 ## Output Format
 
-```
-## Risk Assessment: [System/Design Name]
+```markdown
+## Risk Assessment: [System Name]
+
+### Assessment Context
+- **Scope**: [What was assessed]
+- **Date**: [Assessment date]
+- **Assessors**: [Who conducted]
 
 ### Risk Summary
-| Risk | Category | Likelihood | Impact | Severity |
-|------|----------|------------|--------|----------|
-| [R1] | [cat]    | H/M/L      | H/M/L  | Critical/High/Medium/Low |
 
-### Detailed Analysis
+| ID | Risk | Category | L | I | Severity | Status |
+|----|------|----------|---|---|----------|--------|
+| R1 | [Risk] | [Cat] | H/M/L | H/M/L | [Sev] | [Open/Mitigated/Accepted] |
 
-#### [R1]: [Risk Name]
-- **Category:** [Technical/Operational/Security/Performance/Organizational]
-- **Description:** [What could go wrong]
-- **Likelihood:** [High/Medium/Low] - [Why]
-- **Impact:** [High/Medium/Low] - [What happens if it occurs]
-- **Severity:** [Likelihood × Impact]
-- **Mitigations:**
-  1. [Mitigation strategy]
-  2. [Mitigation strategy]
-- **Residual Risk:** [After mitigations]
+### Critical Risks (Immediate Action Required)
 
-### Top 3 Risks to Address
-1. [R#]: [One-line summary] - [Recommended action]
-2. [R#]: [One-line summary] - [Recommended action]
-3. [R#]: [One-line summary] - [Recommended action]
+#### R[X]: [Risk Name]
+- **Category**: [Technical/Operational/Organizational/External]
+- **Description**: [Detailed description of the risk]
+- **Trigger**: [What causes this risk to manifest]
+- **Impact**: [What happens if it occurs]
+- **Likelihood Rationale**: [Why this likelihood rating]
+- **Current Mitigations**: [What's already in place]
+- **Recommended Mitigations**:
+  1. [Mitigation 1] - Reduces [likelihood/impact]
+  2. [Mitigation 2]
+- **Residual Risk**: [After mitigations]
+- **Owner**: [Who should address]
+- **Timeline**: [When to address]
 
-### Monitoring Recommendations
-- [What to watch for]
+### High Risks (Address Soon)
+[Same structure, briefer]
+
+### Medium/Low Risks
+[Summary table only]
+
+### Risk Monitoring
+
+| Risk | Indicator | Threshold | Response |
+|------|-----------|-----------|----------|
+| [Risk] | [What to monitor] | [When to alert] | [What to do] |
+
+### Recommendations Summary
+1. [Prioritized recommendation]
+2. [Prioritized recommendation]
+
+### Assumptions and Limitations
+- [What this assessment assumed]
+- [What was not assessed]
 ```
 
 ## Guidelines
 
-- Focus on significant risks, not all possibilities
-- Be specific about likelihood rationale
+- Focus on architectural risks, not project risks
+- Be specific about triggers and impacts
 - Mitigations should be actionable
-- Consider both short and long-term risks
+- Consider cascading failures
+- Assess residual risk after mitigations
+- Assign ownership for follow-up

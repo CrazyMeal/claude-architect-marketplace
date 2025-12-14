@@ -1,7 +1,7 @@
 {
   "name": "claude-architect-marketplace",
-  "version": "1.0.0",
-  "description": "A curated marketplace of plugins for software architecture design, analysis, documentation, and diagramming. Optimized for token efficiency and quality output.",
+  "version": "2.0.0",
+  "description": "Expert-level architecture plugins for senior engineers. Deep knowledge of DDD, distributed systems, C4 model, ATAM, and industry-standard documentation formats.",
   "author": {
     "name": "Claude Architect",
     "email": "architect@example.com",
@@ -12,12 +12,15 @@
   "license": "MIT",
   "keywords": [
     "architecture",
-    "software-design",
-    "diagrams",
-    "documentation",
-    "analysis",
-    "refactoring",
-    "brainstorming",
-    "system-design"
+    "ddd",
+    "domain-driven-design",
+    "distributed-systems",
+    "c4-model",
+    "atam",
+    "adr",
+    "madr",
+    "system-design",
+    "microservices",
+    "event-driven"
   ]
 }

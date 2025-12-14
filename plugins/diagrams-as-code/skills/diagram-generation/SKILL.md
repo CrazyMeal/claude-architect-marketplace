@@ -1,50 +1,86 @@
 ---
 name: diagram-generation
-description: Generate architecture diagrams automatically. Use when users discuss system structure, ask for visualizations, or need documentation diagrams.
+description: Generate architecture diagrams when discussing system structure, flows, or documentation needs. Applies C4 model thinking and proper notation.
 allowed-tools: Read, Grep, Glob, Write
+model: opus
 ---
 
-# Diagram Generation Skill
+# Diagram Generation
 
-Automatically generate appropriate diagrams when users discuss architecture.
+Create effective architecture visualizations during technical discussions.
 
-## Activation Triggers
+## Activation Contexts
 
-- Requests for visual representation
-- Discussion of system structure
-- Component interaction explanations
-- Documentation creation
-- Mentions of "diagram", "flowchart", "sequence", "architecture"
+- Discussing system structure or components
+- Explaining how systems interact
+- Creating or reviewing documentation
+- Onboarding discussions about architecture
+- Planning new features or systems
+- Requests for visualizations
 
-## Response Approach
+## Diagram Selection Logic
 
-1. **Identify diagram need** from conversation context
-2. **Select appropriate type**:
-   - Interactions → Sequence diagram
-   - Structure → Component/Class diagram
-   - Flow → Flowchart
-   - Data → ER diagram
-   - System overview → C4 Context
+Based on conversation context:
 
-3. **Generate in Mermaid** (default, most portable)
-4. **Offer alternatives** if Mermaid insufficient
+| Discussion Topic | Diagram Type | Format |
+|-----------------|--------------|--------|
+| System scope, boundaries | C4 Context | PlantUML |
+| Tech stack, deployables | C4 Container | PlantUML |
+| Internal structure | C4 Component | PlantUML |
+| "What happens when..." | Sequence | Mermaid or PlantUML |
+| Business process | Activity/Flowchart | Mermaid |
+| Entity lifecycle | State diagram | Mermaid |
+| Data structure | ER or Domain model | Mermaid |
+| Infrastructure | Deployment | PlantUML |
 
-## Output Template
+## C4 Model Application
 
-When generating diagrams, provide:
+Apply C4 thinking even in informal discussions:
 
-```mermaid
-[diagram code]
+1. **Identify abstraction level**: Are we talking systems, containers, or components?
+2. **Respect boundaries**: Don't mix abstraction levels in one diagram
+3. **Name consistently**: Same element, same name everywhere
+4. **Show relationships**: What flows between elements, not just that they connect
+
+## Generation Approach
+
+1. **Clarify purpose**: What should viewers understand after seeing this?
+2. **Identify audience**: Technical depth appropriate for viewers
+3. **Scope appropriately**: Include only what's needed for the purpose
+4. **Select format**: Mermaid for docs, PlantUML for C4, D2 for presentations
+5. **Keep focused**: One diagram, one message
+
+## Output Format
+
+When generating diagrams:
+
+```
+## [Diagram Title]
+
+**Purpose**: [What this communicates]
+**Audience**: [Who this is for]
+
+[Diagram code block]
+
+**Key takeaways**:
+- [Main insight 1]
+- [Main insight 2]
+
+**Related views**: [Other diagrams that complement this]
 ```
 
-This diagram shows [brief explanation].
+## Quality Checks
 
-To render: [instructions if needed]
+Before presenting a diagram, verify:
+- [ ] Single clear purpose
+- [ ] Appropriate abstraction level
+- [ ] Meaningful labels (not just "calls" or "uses")
+- [ ] 7±2 elements (or clearly grouped)
+- [ ] Consistent notation
 
-## Constraints
+## When Not to Diagram
 
-- Max 20 nodes per diagram
-- Use meaningful, short labels
-- Prefer horizontal layouts for sequences
-- Prefer vertical for hierarchies
-- Include diagram type in code fence
+- Simple enough to explain in words
+- Will be outdated immediately
+- No clear audience
+- Premature (still exploring options)

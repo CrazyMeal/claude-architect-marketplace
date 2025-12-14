@@ -1,51 +1,100 @@
 ---
 name: architecture-review
-description: Review architecture proposals and decisions. Use when users share designs for feedback or ask for critique of technical decisions.
+description: Evaluate architecture proposals using quality attribute analysis and trade-off identification. Activates when reviewing designs, assessing proposals, or discussing architectural decisions.
 allowed-tools: Read, Grep, Glob
+model: opus
 ---
 
-# Architecture Review Skill
+# Architecture Review
 
-Provide constructive feedback on architecture proposals.
+Provide rigorous, constructive evaluation of architectural proposals.
 
-## Activation Triggers
+## Activation Contexts
 
-- User shares a design document
-- Requests for feedback on architecture
-- Questions like "what do you think of this approach"
-- Discussion of pros/cons of a design
+- Reviewing architecture documents or proposals
+- Evaluating technical design decisions
+- Assessing trade-offs between approaches
 - Pre-implementation design reviews
+- Post-incident architectural retrospectives
 
 ## Review Approach
 
-1. **Understand first**: Read completely before commenting
-2. **Acknowledge strengths**: Start with what works
-3. **Prioritize feedback**: Critical > Important > Nice-to-have
-4. **Be constructive**: Suggest alternatives for concerns
-5. **Ask clarifying questions**: Don't assume missing context
+### 1. Understand Before Evaluating
 
-## Feedback Format
+Before providing feedback:
+- What problem is being solved?
+- What are the constraints (team, time, existing systems)?
+- What quality attributes are prioritized?
+- What trade-offs were already considered?
 
-For quick reviews:
-- **Good**: [What works well]
-- **Concerns**: [Issues, prioritized]
-- **Questions**: [What needs clarification]
-- **Suggestions**: [Improvements to consider]
+### 2. Quality Attribute Focus
 
-For detailed reviews:
-- Use the full review template with severity ratings
+Evaluate against explicit quality requirements:
 
-## Quality Criteria
+| Quality Attribute | Key Questions |
+|-------------------|---------------|
+| Performance | What are the latency/throughput requirements? How is the architecture optimized for them? |
+| Scalability | What are the scaling requirements? Where are the potential bottlenecks? |
+| Availability | What's the target SLA? How are failures handled? |
+| Security | What's the threat model? How is data protected? |
+| Modifiability | How easily can this evolve? What's coupled? |
+| Deployability | How will changes be deployed? Can components deploy independently? |
+| Observability | How will problems be detected and diagnosed? |
 
-- Does it solve the problem?
-- Is complexity justified?
-- Are risks identified?
-- Is it operationally feasible?
-- Can it evolve over time?
+### 3. Trade-off Identification
 
-## Communication
+Look for decisions that affect multiple qualities:
+- What's gained and lost with each major decision?
+- Are trade-offs explicitly acknowledged?
+- Are trade-offs appropriate for the context?
 
-- Be direct but respectful
-- Explain the "why" behind concerns
-- Offer alternatives, not just criticism
-- Acknowledge constraints and trade-offs
+### 4. Risk Assessment
+
+Identify:
+- **Sensitivity points**: Where small changes have large impacts
+- **Single points of failure**: What breaks everything?
+- **Complexity hotspots**: Where cognitive load is highest
+
+### 5. Fitness Functions
+
+Suggest automated checks for key qualities:
+- Performance: Response time thresholds
+- Coupling: Dependency metrics
+- Security: Automated scans
+- Reliability: Chaos engineering
+
+## Feedback Structure
+
+### Quick Review
+```
+Strengths: [What works well]
+Concerns: [Issues, prioritized by severity]
+Questions: [Clarifications needed]
+Suggestions: [Concrete alternatives]
+```
+
+### Detailed Review
+Use the full ATAM-inspired structure:
+- Quality attribute analysis
+- Trade-off identification
+- Risk assessment
+- Prioritized recommendations
+
+## Principles
+
+- **Be specific**: Reference specific elements, not generalities
+- **Be constructive**: Every criticism includes a suggestion
+- **Be prioritized**: Critical issues first
+- **Be contextual**: Consider constraints and trade-offs
+- **Be honest**: Don't hide concerns, but be respectful
+
+## Anti-Patterns to Call Out
+
+- Distributed monolith
+- Missing failure handling
+- Implicit quality assumptions
+- Undocumented trade-offs
+- Over-engineering
+- Premature optimization
+- Missing observability
+- Tight coupling to external dependencies

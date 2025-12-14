@@ -1,52 +1,93 @@
 ---
-description: Analyze project dependencies for security, maintenance, and architectural concerns
+description: Analyze dependencies for architectural implications, not just versions
 argument-hint: [package-file]
 allowed-tools: Read, Grep, Glob, Bash
-model: haiku
+model: sonnet
 ---
 
-# Dependency Analysis
+# Dependency Architecture Analysis
 
-Analyze project dependencies for issues and improvement opportunities.
+Go beyond version checking to understand architectural implications of dependencies.
 
-## Analysis Steps
+## Analysis Framework
 
-1. **Read Dependency Files**
-   - package.json, package-lock.json
-   - requirements.txt, Pipfile, pyproject.toml
-   - go.mod, go.sum
-   - Cargo.toml, Gemfile, pom.xml, etc.
+### 1. Dependency Classification
 
-2. **Categorize Dependencies**
-   - Runtime vs. development
-   - Direct vs. transitive
-   - Core vs. utility
+**By Architectural Role**:
+- **Core domain**: Libraries that shape your domain model
+- **Infrastructure**: Database, messaging, HTTP clients
+- **Application framework**: The foundation (Spring, Express, etc.)
+- **Cross-cutting**: Logging, metrics, security
+- **Utility**: Helpers that could be replaced easily
 
-3. **Assess Each Dependency**
-   - Purpose and necessity
-   - Maintenance status (if determinable from version dates)
-   - Size impact (for frontend)
-   - Overlap with other dependencies
+**By Coupling Level**:
+- **Deep integration**: Pervasive throughout codebase
+- **Adapter pattern**: Wrapped behind abstractions
+- **Isolated usage**: Contained to specific modules
+- **Transitive only**: Brought in by other deps
 
-## Output Format
+### 2. Risk Assessment
+
+**Vendor/Project Risk**:
+- Maintenance activity (commits, releases, response time)
+- Community health (contributors, adoption)
+- License implications
+- Funding/sustainability model
+
+**Technical Risk**:
+- Breaking change history
+- API stability
+- Performance characteristics
+- Security track record
+
+**Coupling Risk**:
+- How painful would replacement be?
+- Are there abstraction layers protecting you?
+- Is business logic entangled with library idioms?
+
+### 3. Architectural Implications
+
+Consider how dependencies affect:
+- **Testability**: Do they make testing harder?
+- **Deployment**: Do they constrain how you deploy?
+- **Performance**: What's their runtime impact?
+- **Observability**: Do they integrate with your monitoring?
+- **Scalability**: Any single-instance assumptions?
+
+### 4. Strategic Concerns
+
+- **Build vs buy evolution**: Should any deps become custom code?
+- **Consolidation opportunities**: Multiple libs doing similar things?
+- **Abstraction opportunities**: Where should you wrap dependencies?
+- **Upgrade paths**: Any deps blocking language/framework upgrades?
+
+## Output Structure
 
 ```
 ## Dependency Analysis
 
-### Summary
-- Total: [count] ([runtime] runtime, [dev] dev)
-- Categories: [breakdown]
+### Overview
+- Total dependencies: [X direct, Y transitive]
+- Risk profile: [summary]
 
-### Concerns
-| Dependency | Issue | Recommendation |
-|------------|-------|----------------|
-| ...        | ...   | ...            |
+### Architectural Dependencies
+| Dependency | Role | Coupling | Risk | Notes |
+|------------|------|----------|------|-------|
+| [name] | [core/infra/util] | [deep/wrapped/isolated] | [H/M/L] | [key concern] |
 
-### Optimization Opportunities
-1. [opportunity]
+### Strategic Concerns
+
+#### High-Risk Dependencies
+1. **[dep]**: [why risky, what to do]
+
+#### Abstraction Recommendations
+1. **[dep]**: [wrap because...]
+
+#### Consolidation Opportunities
+1. **[dep1, dep2]**: [overlap, recommendation]
 
 ### Action Items
-- [ ] [specific action]
+- [ ] [prioritized action]
 ```
 
-Be concise. Only flag genuine concerns, not theoretical issues.
+Focus on architectural implications, not just outdated versions.
