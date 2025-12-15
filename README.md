@@ -45,8 +45,8 @@ Add to your project's `.claude/settings.json`:
 Collaborative system design drawing on DDD, distributed systems theory, and evolutionary architecture.
 
 **Commands:**
-- `/cam-design-system <name>` - Full system architecture with bounded contexts, quality attributes
-- `/cam-design-component <name>` - Component design with DDD tactical patterns, integration strategies
+- `/design-system <name>` - Full system architecture with bounded contexts, quality attributes
+- `/design-component <name>` - Component design with DDD tactical patterns, integration strategies
 
 **Agent:** `system-architect` - Principal architect for design discussions
 
@@ -65,8 +65,8 @@ Collaborative system design drawing on DDD, distributed systems theory, and evol
 Deep codebase analysis with pattern recognition and technical debt assessment.
 
 **Commands:**
-- `/cam-analyze-codebase [dir]` - Structural analysis, domain model assessment, coupling metrics
-- `/cam-analyze-dependencies [file]` - Architectural dependency analysis (not just version checking)
+- `/analyze-codebase [dir]` - Structural analysis, domain model assessment, coupling metrics
+- `/analyze-dependencies [file]` - Architectural dependency analysis (not just version checking)
 
 **Agent:** `code-analyst` - Principal engineer for reverse-engineering existing systems
 
@@ -84,9 +84,9 @@ Deep codebase analysis with pattern recognition and technical debt assessment.
 C4 model diagrams with proper abstraction discipline.
 
 **Commands:**
-- `/cam-diagram <type> [format]` - Architecture diagrams with purpose-driven selection
-- `/cam-c4-diagram <level>` - C4 diagrams: Context, Container, Component, plus Deployment and Dynamic
-- `/cam-diagram-from-code <type> [dir]` - Generate diagrams from existing code
+- `/diagram <type> [format]` - Architecture diagrams with purpose-driven selection
+- `/c4-diagram <level>` - C4 diagrams: Context, Container, Component, plus Deployment and Dynamic
+- `/diagram-from-code <type> [dir]` - Generate diagrams from existing code
 
 **Agent:** `diagram-assistant` - Architecture visualization expert
 
@@ -105,9 +105,9 @@ C4 model diagrams with proper abstraction discipline.
 Industry-standard documentation following best practices.
 
 **Commands:**
-- `/cam-adr <title>` - MADR format with decision drivers, alternatives, consequences
-- `/cam-tech-spec <feature>` - Specification with quality attributes, operational concerns, risks
-- `/cam-rfc <title>` - Request for Comments for major proposals
+- `/adr <title>` - MADR format with decision drivers, alternatives, consequences
+- `/tech-spec <feature>` - Specification with quality attributes, operational concerns, risks
+- `/rfc <title>` - Request for Comments for major proposals
 
 **Agent:** `technical-writer` - Senior architect focused on documentation
 
@@ -125,9 +125,9 @@ Industry-standard documentation following best practices.
 Rigorous evaluation using quality attribute analysis.
 
 **Commands:**
-- `/cam-review-architecture [doc]` - ATAM-inspired review with quality scenarios
-- `/cam-risk-assessment [doc]` - Comprehensive risk taxonomy and mitigation strategies
-- `/cam-review-adr <file>` - ADR quality review
+- `/review-architecture [doc]` - ATAM-inspired review with quality scenarios
+- `/risk-assessment [doc]` - Comprehensive risk taxonomy and mitigation strategies
+- `/review-adr <file>` - ADR quality review
 
 **Agent:** `architecture-reviewer` - Principal architect for design evaluation
 
@@ -165,7 +165,7 @@ domain into a separate service."
 ### C4 Documentation
 
 ```
-"/cam-c4-diagram container"
+"/c4-diagram container"
 
 > Generates a proper C4 Container diagram with technology
 > annotations, relationship labels, and PlantUML C4 library syntax.
@@ -174,7 +174,7 @@ domain into a separate service."
 ### MADR-Format ADRs
 
 ```
-"/cam-adr use-event-sourcing-for-orders"
+"/adr use-event-sourcing-for-orders"
 
 > Creates an ADR with decision drivers, considered options with
 > pros/cons, decision outcome, and consequences - following
@@ -184,7 +184,7 @@ domain into a separate service."
 ### ATAM-Style Review
 
 ```
-"/cam-review-architecture ./docs/design.md"
+"/review-architecture ./docs/design.md"
 
 > Conducts quality attribute analysis, identifies trade-offs
 > and sensitivity points, assesses risks, and provides
@@ -210,7 +210,7 @@ claude-architect-marketplace/
 │   └── marketplace.json
 ├── plugins/
 │   ├── architecture-design/
-│   │   ├── commands/     (cam-design-system, cam-design-component)
+│   │   ├── commands/     (design-system, design-component)
 │   │   ├── agents/       (system-architect)
 │   │   └── skills/       (system-design)
 │   ├── architecture-analysis/
