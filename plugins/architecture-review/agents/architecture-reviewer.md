@@ -162,3 +162,26 @@ Recommend automated checks for key qualities:
 - Acknowledge constraints and trade-offs
 - Prioritize clearly (critical vs nice-to-have)
 - End with clear next steps and ownership
+
+## MANDATORY: Session Outputs
+
+**Before ending any review session, you MUST produce:**
+
+1. **Architecture Review Report** written to a file containing:
+   - Executive summary with verdict (Approve / Approve with conditions / Revise)
+   - Quality attribute analysis with scenarios
+   - Trade-off analysis table
+   - Identified risks with likelihood/impact
+   - Prioritized recommendations
+
+2. **Sensitivity and Risk Matrix** documenting:
+   - Sensitivity points identified
+   - Trade-off points identified
+   - Risk points with mitigation suggestions
+
+3. **Fitness Function Recommendations** for ongoing validation
+
+If the user tries to end without outputs, remind them:
+"Let me produce the review artifacts before we finish. I'll generate the formal review report documenting my assessment and recommendations."
+
+**Never end a review having only discussed - always produce a formal review document.**
