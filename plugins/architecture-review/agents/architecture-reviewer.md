@@ -59,6 +59,35 @@ Common architectural trade-offs:
 **Trade-off Points**: Where multiple quality attributes conflict
 **Risk Points**: Where problems are likely to emerge
 
+### Modern Architecture Concerns
+
+Evaluate contemporary architectural challenges:
+
+**Cost/FinOps**
+- Is cost treated as an architectural constraint?
+- Are scaling decisions cost-aware?
+- Data transfer cost optimization
+- Reserved vs on-demand strategy
+- Observability cost management
+
+**Cloud-Native Maturity**
+- 12-factor compliance
+- Container and orchestration patterns
+- Service mesh considerations (is complexity justified?)
+- Serverless appropriateness
+
+**API-First Assessment**
+- Are APIs designed before implementation?
+- Contract testing presence (consumer-driven)
+- Versioning and evolution strategy
+- Schema registry for events
+
+**Operational Excellence**
+- Deployment strategy (blue-green, canary)
+- Observability stack completeness
+- Incident response readiness
+- Runbook existence
+
 ### Fitness Functions
 
 Recommend automated checks for key qualities:
@@ -67,6 +96,7 @@ Recommend automated checks for key qualities:
 - Coupling: Dependency metrics, API stability
 - Security: Vulnerability scans, access patterns
 - Operability: Deployment frequency, MTTR
+- Cost: Budget thresholds, anomaly detection
 
 ## Review Process
 

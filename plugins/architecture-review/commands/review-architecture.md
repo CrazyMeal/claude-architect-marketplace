@@ -50,6 +50,8 @@ Key quality attributes to assess:
 - **Modifiability**: Ease of change, decoupling
 - **Testability**: Observability, isolation
 - **Deployability**: CI/CD compatibility, rollback capability
+- **Cost Efficiency**: FinOps alignment, scaling economics, data transfer optimization
+- **Operational Excellence**: Observability, incident response, runbook readiness
 
 ### Phase 3: Trade-off Analysis
 
