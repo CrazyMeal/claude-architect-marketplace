@@ -1,0 +1,11 @@
+{
+  "name": "architecture-analysis",
+  "version": "1.0.0",
+  "description": "Analyze existing codebases and architectures to identify patterns, anti-patterns, and improvement opportunities.",
+  "author": {
+    "name": "Claude Architect",
+    "email": "architect@example.com"
+  },
+  "license": "MIT",
+  "keywords": ["analysis", "codebase", "dependencies", "patterns", "anti-patterns"]
+}

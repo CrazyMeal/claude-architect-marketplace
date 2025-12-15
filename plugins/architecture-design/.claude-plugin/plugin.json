@@ -1,0 +1,11 @@
+{
+  "name": "architecture-design",
+  "version": "1.0.0",
+  "description": "Design software architectures from scratch with structured thinking and industry patterns.",
+  "author": {
+    "name": "Claude Architect",
+    "email": "architect@example.com"
+  },
+  "license": "MIT",
+  "keywords": ["architecture", "design", "system-design", "components", "patterns"]
+}

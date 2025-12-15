@@ -1,0 +1,11 @@
+{
+  "name": "diagrams-as-code",
+  "version": "1.0.0",
+  "description": "Generate architecture diagrams as code using Mermaid, PlantUML, D2, and other formats.",
+  "author": {
+    "name": "Claude Architect",
+    "email": "architect@example.com"
+  },
+  "license": "MIT",
+  "keywords": ["diagrams", "mermaid", "plantuml", "d2", "visualization", "flowcharts", "sequence", "c4"]
+}
