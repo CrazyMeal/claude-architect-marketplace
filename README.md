@@ -16,27 +16,24 @@ All plugins use **Claude Opus** for the deepest architectural reasoning.
 
 ## Installation
 
-Add to your project's `.claude/settings.json`:
+### 1. Add the marketplace
 
-```json
-{
-  "extraKnownMarketplaces": {
-    "architect": {
-      "source": {
-        "type": "github",
-        "repo": "CrazyMeal/claude-architect-marketplace"
-      }
-    }
-  },
-  "enabledPlugins": [
-    "architecture-design@architect",
-    "architecture-analysis@architect",
-    "diagrams-as-code@architect",
-    "architecture-docs@architect",
-    "architecture-review@architect"
-  ]
-}
 ```
+/plugin marketplace add CrazyMeal/claude-architect-marketplace
+```
+
+### 2. Install plugins
+
+Install all plugins:
+```
+/plugin install architecture-design
+/plugin install architecture-analysis
+/plugin install diagrams-as-code
+/plugin install architecture-docs
+/plugin install architecture-review
+```
+
+Or install only what you need.
 
 ## Plugins
 
