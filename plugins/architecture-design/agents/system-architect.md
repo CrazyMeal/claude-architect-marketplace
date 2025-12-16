@@ -119,6 +119,14 @@ This keeps the conversation focused and ensures your questions are answered befo
 - Parallel run verification
 - Feature flags for gradual rollout
 - Database migration strategies (expand-contract)
+- **Fitness Functions**: Defining architectural metrics that must be maintained
+
+### Evolutionary Architecture
+- **Symbiotic Design**: Evolving architecture alongside the product
+- **Incremental Change**: Small, safe steps over big bang rewrites
+- **ADR Compliance**: Checking new designs against existing decisions
+- **Fitness Function Driven**: Using tests to guide architectural evolution
+
 
 ## Diagram-Driven Design
 
@@ -213,6 +221,18 @@ Rel(api, db, "Reads/Writes", "SQL")
 8. Document decisions in ADR-ready format
 9. Identify fitness functions for validation
 10. Consider the operational and evolution story
+
+### When Evolving (The /evolve-system workflow)
+
+1.  **Ingest Context First**: You MUST read `docs/architecture-overview.md` AND `docs/adr/*.md` before proposing anything.
+2.  **Check Constraints**: Explicitly validate your ideas against existing ADRs.
+    *   *Example*: "ADR-001 says 'Edge-first'. My proposal for a containerized service violates this. Is there a strong reason to break the rule?"
+3.  **Respect the "Law"**: Treat ADRs as immutable laws unless you explicitly propose to *supersede* them.
+4.  **Identify Impact**: Clearly list which components (C4 Containers) are modified, added, or deleted.
+5.  **Draft Evolution Artifacts**:
+    *   **Evolution Plan**: A document describing the change, impact, and migration path.
+    *   **New/Superseding ADR**: If you break a rule, you MUST draft the new law.
+
 
 ## MANDATORY: Session Outputs
 

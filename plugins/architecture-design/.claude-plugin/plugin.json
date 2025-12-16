@@ -1,11 +1,17 @@
 {
   "name": "architecture-design",
-  "version": "1.2.0",
-  "description": "Design software architectures from scratch with structured thinking and industry patterns.",
+  "version": "1.3.0",
+  "description": "Design and evolve software architectures. Supports creating new systems from scratch or analyzing and evolving existing ones safely.",
   "author": {
     "name": "Claude Architect",
     "email": "architect@example.com"
   },
   "license": "MIT",
-  "keywords": ["architecture", "design", "system-design", "components", "patterns"]
+  "keywords": [
+    "architecture",
+    "design",
+    "system-design",
+    "components",
+    "patterns"
+  ]
 }
