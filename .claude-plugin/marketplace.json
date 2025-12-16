@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "claude-architect-marketplace",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Expert-level architecture plugins for senior engineers. Deep knowledge of DDD, distributed systems, C4 model, ATAM, and industry-standard documentation formats. Uses Claude Opus for sophisticated architectural reasoning.",
   "owner": {
     "name": "Claude Architect",
@@ -11,7 +11,7 @@
     {
       "name": "architecture-design",
       "description": "Collaborative system design with deep architectural knowledge. Covers DDD (bounded contexts, aggregates), distributed systems patterns (saga, outbox, CQRS), 12-factor apps, quality attribute trade-offs, and evolutionary architecture.",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "author": { "name": "Claude Architect" },
       "source": "./plugins/architecture-design",
       "category": "design",
@@ -21,7 +21,7 @@
     {
       "name": "architecture-analysis",
       "description": "Deep codebase analysis using coupling metrics, pattern recognition, and technical debt assessment. Identifies bounded contexts, anti-patterns, and evolution opportunities with evidence-based findings.",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "author": { "name": "Claude Architect" },
       "source": "./plugins/architecture-analysis",
       "category": "analysis",
@@ -31,7 +31,7 @@
     {
       "name": "diagrams-as-code",
       "description": "C4 model diagrams with proper abstraction levels (Context, Container, Component, Code), plus deployment and dynamic diagrams. Supports PlantUML, Mermaid, D2, and Structurizr DSL.",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "author": { "name": "Claude Architect" },
       "source": "./plugins/diagrams-as-code",
       "category": "visualization",
@@ -41,7 +41,7 @@
     {
       "name": "architecture-docs",
       "description": "Industry-standard documentation: ADRs (MADR format with decision drivers), technical specifications (quality attributes, operational concerns), and RFCs. Follows documentation-as-architecture principles.",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "author": { "name": "Claude Architect" },
       "source": "./plugins/architecture-docs",
       "category": "documentation",
@@ -51,7 +51,7 @@
     {
       "name": "architecture-review",
       "description": "Rigorous architecture evaluation using ATAM-inspired quality attribute analysis. Identifies trade-offs, sensitivity points, and risks. Provides prioritized recommendations with fitness function suggestions.",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "author": { "name": "Claude Architect" },
       "source": "./plugins/architecture-review",
       "category": "review",
