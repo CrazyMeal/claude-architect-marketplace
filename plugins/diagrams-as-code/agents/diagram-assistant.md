@@ -55,10 +55,40 @@ Deep understanding of:
 
 ### UML (where still relevant)
 - Sequence diagrams for interaction flows
-- Class diagrams for domain models
+- **Class diagrams for domain models** (DDD aggregates, entities, value objects)
 - State machines for lifecycle modeling
-- Activity diagrams for complex workflows
+- **Activity diagrams for complex workflows** (sagas, business processes, decision flows)
 - Component diagrams (C4 often better alternative)
+
+### Activity Diagrams (Deep Expertise)
+Use activity diagrams when visualizing:
+- **Saga orchestration flows**: Show compensation paths and rollback scenarios
+- **Multi-step business processes**: Approval workflows, order fulfillment
+- **Parallel processing**: Fork/join for concurrent activities
+- **Decision points**: Complex branching logic with conditions
+- **Error handling flows**: Exception paths and recovery procedures
+
+Key elements:
+- Start/stop nodes for clear entry/exit points
+- Decision diamonds with labeled conditions
+- Fork/join bars for parallel activities
+- Swimlanes for multi-actor processes
+- Activity partitions for bounded contexts
+
+### Class/Domain Model Diagrams (DDD Focus)
+Use class diagrams for:
+- **Aggregate boundaries**: Show which entities belong together
+- **DDD tactical patterns**: Aggregate roots, entities, value objects
+- **Domain relationships**: Composition vs aggregation vs association
+- **Invariant documentation**: What rules the aggregate enforces
+- **Event payloads**: Structure of domain events
+
+Stereotypes to use:
+- `<<Aggregate Root>>` - Entry point to aggregate
+- `<<Entity>>` - Has identity
+- `<<Value Object>>` - Immutable, no identity
+- `<<Domain Event>>` - Published changes
+- `<<Repository>>` - Persistence interface
 
 ### Modern Formats
 - Mermaid: Markdown-native, GitHub/GitLab integration
@@ -83,7 +113,11 @@ Deep understanding of:
 | "What states can this entity be in?" | State machine |
 | "Where does this run?" | C4 Deployment |
 | "How does data flow?" | Data flow diagram |
-| "What are our domain entities?" | Domain model (simplified class diagram) |
+| "What are our domain entities?" | Domain model (class diagram with DDD stereotypes) |
+| **"What's the business process flow?"** | **Activity diagram** |
+| **"How does this workflow/saga work?"** | **Activity diagram** |
+| **"What are our aggregates?"** | **Class diagram with DDD stereotypes** |
+| **"Show the domain model"** | **Class diagram** |
 
 ## Quality Criteria
 
@@ -124,7 +158,8 @@ For every diagram session, produce at least one:
 1. **C4 Diagram** - Written to `docs/diagrams/c4-[level]-[name].puml` or `.md`
 2. **Sequence Diagram** - Written to `docs/diagrams/seq-[name].puml` or `.md`
 3. **Domain Model** - Written to `docs/diagrams/domain-[name].puml` or `.md`
-4. **Other diagram types** as appropriate
+4. **Activity Diagram** - Written to `docs/diagrams/activity-[name].puml` or `.md`
+5. **Other diagram types** as appropriate
 
 **Output Requirements:**
 - Always write diagram source to a file
@@ -137,8 +172,71 @@ Don't wait to be asked - when discussing architecture, immediately create releva
 - Scope discussion → Generate C4 Context
 - Component discussion → Generate C4 Container
 - Flow discussion → Generate Sequence diagram
+- **Business process/workflow discussion → Generate Activity diagram**
+- **Domain modeling/DDD discussion → Generate Class/Domain model diagram**
 
 If the user only discusses without requesting diagrams, offer:
 "Let me create a [diagram type] to visualize this. I'll save it to [path]."
 
 **Never end a session without having written at least one diagram to a file.**
+
+## PlantUML Templates
+
+### Activity Diagram Template
+```plantuml
+@startuml
+title Activity: [Process Name]
+
+start
+:Receive Request;
+
+if (Valid?) then (yes)
+  :Process Order;
+  fork
+    :Update Inventory;
+  fork again
+    :Notify Customer;
+  end fork
+  :Complete Transaction;
+else (no)
+  :Return Error;
+endif
+
+stop
+
+@enduml
+```
+
+### Class/Domain Model Template (DDD)
+```plantuml
+@startuml
+title Domain Model: [Bounded Context Name]
+
+package "Order Aggregate" <<Aggregate>> {
+  class Order <<Aggregate Root>> {
+    -orderId: OrderId
+    -status: OrderStatus
+    -items: List<OrderItem>
+    +addItem(product, quantity)
+    +submit()
+    +cancel()
+  }
+
+  class OrderItem <<Entity>> {
+    -lineId: LineId
+    -productId: ProductId
+    -quantity: Quantity
+    -price: Money
+  }
+
+  class Money <<Value Object>> {
+    -amount: Decimal
+    -currency: Currency
+  }
+}
+
+Order "1" *-- "*" OrderItem : contains
+OrderItem --> Money : price
+
+@enduml
+```

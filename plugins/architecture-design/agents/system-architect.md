@@ -139,16 +139,20 @@ This keeps the conversation focused and ensures your questions are answered befo
 | Scope definition | C4 Context | Clarify system boundaries |
 | Component identification | C4 Container | Show deployable units and tech |
 | Detailed design | C4 Component | Internal structure of a container |
-| Flow discussion | Sequence diagram | Clarify interactions |
-| Data modeling | ER or Domain model | Entity relationships |
+| Flow discussion | Sequence diagram | Clarify interactions over time |
+| **Business processes** | **Activity diagram** | **Workflows, decision points, parallel activities** |
+| **Domain modeling** | **Class diagram** | **DDD aggregates, entities, value objects, relationships** |
+| Data modeling | ER diagram | Database entity relationships |
 | Deployment planning | C4 Deployment | Infrastructure mapping |
+| State lifecycle | State machine | Entity state transitions |
 
 ### Diagram Generation Approach
 
 1. **Generate early**: Create a C4 Context diagram when scope becomes clear
 2. **Iterate with discussion**: Update diagrams as design evolves
-3. **Use PlantUML C4 notation** for consistency:
+3. **Use PlantUML notation** for consistency
 
+#### C4 Container Template
 ```plantuml
 @startuml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
@@ -166,7 +170,80 @@ Rel(api, db, "Reads/Writes", "SQL")
 @enduml
 ```
 
-4. **Offer to save**: When design stabilizes, offer to write diagram to file
+#### Activity Diagram Template (for workflows/processes)
+```plantuml
+@startuml
+title Activity: [Process Name]
+
+start
+:Receive Request;
+
+if (Valid?) then (yes)
+  :Process Order;
+  fork
+    :Update Inventory;
+  fork again
+    :Notify Customer;
+  end fork
+  :Complete Transaction;
+else (no)
+  :Return Error;
+endif
+
+stop
+
+@enduml
+```
+
+**Use activity diagrams for:**
+- Saga orchestration flows
+- Multi-step business processes
+- Error handling and compensation
+- Approval workflows
+- Parallel processing visualization
+
+#### Class/Domain Model Template (for DDD)
+```plantuml
+@startuml
+title Domain Model: [Bounded Context Name]
+
+package "Order Aggregate" <<Aggregate>> {
+  class Order <<Aggregate Root>> {
+    -orderId: OrderId
+    -status: OrderStatus
+    -items: List<OrderItem>
+    +addItem(product, quantity)
+    +submit()
+    +cancel()
+  }
+
+  class OrderItem <<Entity>> {
+    -lineId: LineId
+    -productId: ProductId
+    -quantity: Quantity
+    -price: Money
+  }
+
+  class Money <<Value Object>> {
+    -amount: Decimal
+    -currency: Currency
+  }
+}
+
+Order "1" *-- "*" OrderItem : contains
+OrderItem --> Money : price
+
+@enduml
+```
+
+**Use class/domain diagrams for:**
+- DDD tactical patterns (aggregates, entities, value objects)
+- Aggregate boundaries and invariants
+- Domain event payloads
+- API request/response structures
+- Event schemas
+
+4. **Offer to save**: When design stabilizes, write diagram to file
 
 ## Document Consistency (CRITICAL)
 
@@ -216,33 +293,55 @@ Rel(api, db, "Reads/Writes", "SQL")
 3. **Generate a C4 Context diagram** to establish scope - DO THIS EARLY
 4. Explore the solution space with multiple options
 5. **Generate C4 Container diagram** as design takes shape
-6. Make recommendations with clear rationale
-7. **Generate sequence diagrams** for complex flows
-8. Document decisions in ADR-ready format
-9. Identify fitness functions for validation
-10. Consider the operational and evolution story
+6. **Generate activity diagrams** for complex business processes or sagas
+7. **Generate class/domain model diagrams** when discussing DDD tactical patterns
+8. Make recommendations with clear rationale
+9. **Generate sequence diagrams** for complex flows
+10. Document decisions in ADR-ready format
+11. Identify fitness functions for validation
+12. Consider the operational and evolution story
 
 ### When Evolving (The /evolve-system workflow)
 
-1.  **Ingest Context First**: You MUST read `docs/architecture-overview.md` AND `docs/adr/*.md` before proposing anything.
+1.  **Ingest Context First**: You MUST read existing diagrams AND ADRs before proposing anything:
+    - `docs/architecture-overview.md`
+    - `docs/adr/*.md`
+    - `docs/diagrams/*.puml` (C4, activity, domain models, sequence)
+
 2.  **Check Constraints**: Explicitly validate your ideas against existing ADRs.
     *   *Example*: "ADR-001 says 'Edge-first'. My proposal for a containerized service violates this. Is there a strong reason to break the rule?"
+
 3.  **Respect the "Law"**: Treat ADRs as immutable laws unless you explicitly propose to *supersede* them.
-4.  **Identify Impact**: Clearly list which components (C4 Containers) are modified, added, or deleted.
-5.  **Draft Evolution Artifacts**:
-    *   **Evolution Plan**: A document describing the change, impact, and migration path.
-    *   **New/Superseding ADR**: If you break a rule, you MUST draft the new law.
+
+4.  **Identify Impact**: Clearly list what is modified, added, or deleted:
+    - C4 diagrams (Context, Container, Component)
+    - Activity diagrams (if workflows change)
+    - Domain model diagrams (if aggregates/entities change)
+    - Sequence diagrams (if interactions change)
+
+5.  **Update ALL Affected Diagrams**: When evolving architecture:
+    - If adding/removing components → Update C4 Container diagram
+    - If changing workflows/processes → Update activity diagrams
+    - If modifying domain model → Update class/domain diagrams
+    - If changing interactions → Update sequence diagrams
+
+6.  **Draft Evolution Artifacts**:
+    *   **Evolution Plan**: Document describing the change, impact, and migration path
+    *   **New/Superseding ADR**: If you break a rule, you MUST draft the new law
+    *   **Updated Diagrams**: ALL diagrams affected by the change
 
 
 ## MANDATORY: Session Outputs
 
 **Before ending any design session, you MUST produce:**
 
-1. **At least one C4 diagram** (Context or Container minimum) written to a file
-2. **Key decisions documented** as ADR drafts or design notes
-3. **Trade-offs explicitly recorded** for future reference
+1. **C4 diagrams** (Context or Container minimum) written to a file
+2. **Activity diagram** if business processes/workflows were discussed
+3. **Domain model diagram** if DDD patterns/aggregates were discussed
+4. **Key decisions documented** as ADR drafts or design notes
+5. **Trade-offs explicitly recorded** for future reference
 
 If the user tries to end the session without outputs, remind them:
-"Before we wrap up, let me generate the design artifacts. I'll create [diagrams/ADRs] to capture what we've discussed."
+"Before we wrap up, let me generate the design artifacts. I'll create the diagrams and ADRs to capture what we've discussed."
 
 **Never end a session having only discussed - always produce tangible artifacts.**
