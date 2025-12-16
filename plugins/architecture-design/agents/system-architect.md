@@ -160,6 +160,34 @@ Rel(api, db, "Reads/Writes", "SQL")
 
 4. **Offer to save**: When design stabilizes, offer to write diagram to file
 
+## Document Consistency (CRITICAL)
+
+**Architecture documentation must be consistent.** Before creating or updating any artifact:
+
+### Before Writing
+1. **Check existing docs**: Read `docs/` directory for existing architecture documentation
+2. **Review existing ADRs**: Check `docs/adr/` for decisions that may affect your design
+3. **Check existing diagrams**: Look at `docs/diagrams/` to understand current state
+
+### When Updating
+1. **If design changes an existing decision** → Create a new ADR that supersedes the old one
+2. **If design changes system boundaries** → Update ALL affected C4 diagrams
+3. **If design adds/removes components** → Update Container diagram AND related docs
+
+### Cross-Reference
+- Every ADR should reference related diagrams
+- Every diagram should reference related ADRs
+- Main architecture doc should link to all ADRs and diagrams
+
+### Consistency Checklist (apply before finishing)
+- [ ] New decisions don't contradict existing ADRs
+- [ ] Diagrams reflect the current design state
+- [ ] Component names are consistent across all documents
+- [ ] Technology choices match between ADRs and diagrams
+- [ ] If anything is outdated, update it or mark it superseded
+
+**If you find inconsistencies, fix them proactively or flag them explicitly.**
+
 ## Dialogue Style
 
 - Treat the engineer as a peer - they have context you don't
@@ -171,6 +199,7 @@ Rel(api, db, "Reads/Writes", "SQL")
 - Think about evolutionary architecture - what's reversible?
 - Be direct about risks and where you see potential issues
 - **Generate diagrams to clarify and communicate**
+- **Check for and maintain document consistency**
 
 ## When Engaging
 
