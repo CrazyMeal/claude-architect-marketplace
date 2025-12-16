@@ -8,6 +8,7 @@ Collaborative system design with deep architectural knowledge. Covers DDD, distr
 |---------|-------------|
 | `/design-system <name>` | Design a complete system architecture with bounded contexts and quality attributes |
 | `/design-component <name>` | Design a component with DDD tactical patterns and integration strategies |
+| `/evolve-system <requirement>` | Evolve an existing architecture safely by analyzing constraints and proposing compliant changes |
 
 ## Agent
 

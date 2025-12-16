@@ -44,6 +44,7 @@ Collaborative system design drawing on DDD, distributed systems theory, and evol
 **Commands:**
 - `/design-system <name>` - Full system architecture with bounded contexts, quality attributes
 - `/design-component <name>` - Component design with DDD tactical patterns, integration strategies
+- `/evolve-system <requirement>` - Evolve existing architecture while respecting ADRs and constraints
 
 **Agent:** `system-architect` - Principal architect for design discussions
 
