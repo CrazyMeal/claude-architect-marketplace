@@ -12,96 +12,50 @@
       "name": "architecture-design",
       "description": "Collaborative system design with deep architectural knowledge. Covers DDD (bounded contexts, aggregates), distributed systems patterns (saga, outbox, CQRS), 12-factor apps, quality attribute trade-offs, and evolutionary architecture.",
       "version": "1.3.0",
-      "author": {
-        "name": "Claude Architect"
-      },
+      "author": { "name": "Claude Architect" },
       "source": "./plugins/architecture-design",
       "category": "design",
-      "tags": [
-        "architecture",
-        "ddd",
-        "distributed-systems",
-        "microservices",
-        "event-driven",
-        "12-factor",
-        "system-design"
-      ],
+      "tags": ["architecture", "ddd", "distributed-systems", "microservices", "event-driven", "12-factor", "system-design"],
       "strict": false
     },
     {
       "name": "architecture-analysis",
       "description": "Deep codebase analysis using coupling metrics, pattern recognition, and technical debt assessment. Identifies bounded contexts, anti-patterns, and evolution opportunities with evidence-based findings.",
-      "version": "1.2.0",
-      "author": {
-        "name": "Claude Architect"
-      },
+      "version": "1.3.0",
+      "author": { "name": "Claude Architect" },
       "source": "./plugins/architecture-analysis",
       "category": "analysis",
-      "tags": [
-        "analysis",
-        "technical-debt",
-        "coupling",
-        "patterns",
-        "anti-patterns",
-        "reverse-engineering"
-      ],
+      "tags": ["analysis", "technical-debt", "coupling", "patterns", "anti-patterns", "reverse-engineering"],
       "strict": false
     },
     {
       "name": "diagrams-as-code",
       "description": "C4 model diagrams with proper abstraction levels (Context, Container, Component, Code), plus deployment and dynamic diagrams. Supports PlantUML, Mermaid, D2, and Structurizr DSL.",
-      "version": "1.2.0",
-      "author": {
-        "name": "Claude Architect"
-      },
+      "version": "1.3.0",
+      "author": { "name": "Claude Architect" },
       "source": "./plugins/diagrams-as-code",
       "category": "visualization",
-      "tags": [
-        "c4-model",
-        "plantuml",
-        "mermaid",
-        "d2",
-        "structurizr",
-        "architecture-diagrams"
-      ],
+      "tags": ["c4-model", "plantuml", "mermaid", "d2", "structurizr", "architecture-diagrams"],
       "strict": false
     },
     {
       "name": "architecture-docs",
       "description": "Industry-standard documentation: ADRs (MADR format with decision drivers), technical specifications (quality attributes, operational concerns), and RFCs. Follows documentation-as-architecture principles.",
-      "version": "1.2.0",
-      "author": {
-        "name": "Claude Architect"
-      },
+      "version": "1.3.0",
+      "author": { "name": "Claude Architect" },
       "source": "./plugins/architecture-docs",
       "category": "documentation",
-      "tags": [
-        "adr",
-        "madr",
-        "tech-spec",
-        "rfc",
-        "documentation",
-        "decision-records"
-      ],
+      "tags": ["adr", "madr", "tech-spec", "rfc", "documentation", "decision-records"],
       "strict": false
     },
     {
       "name": "architecture-review",
       "description": "Rigorous architecture evaluation using ATAM-inspired quality attribute analysis. Identifies trade-offs, sensitivity points, and risks. Provides prioritized recommendations with fitness function suggestions.",
-      "version": "1.2.0",
-      "author": {
-        "name": "Claude Architect"
-      },
+      "version": "1.3.0",
+      "author": { "name": "Claude Architect" },
       "source": "./plugins/architecture-review",
       "category": "review",
-      "tags": [
-        "atam",
-        "quality-attributes",
-        "trade-offs",
-        "risk-assessment",
-        "fitness-functions",
-        "review"
-      ],
+      "tags": ["atam", "quality-attributes", "trade-offs", "risk-assessment", "fitness-functions", "review"],
       "strict": false
     }
   ]
