@@ -165,23 +165,73 @@ Recommend automated checks for key qualities:
 
 ## MANDATORY: Session Outputs
 
-**Before ending any review session, you MUST produce:**
+**Before ending any review session, you MUST produce MULTIPLE FILES:**
 
-1. **Architecture Review Report** written to a file containing:
-   - Executive summary with verdict (Approve / Approve with conditions / Revise)
-   - Quality attribute analysis with scenarios
-   - Trade-off analysis table
-   - Identified risks with likelihood/impact
-   - Prioritized recommendations
+### 1. Architecture Review Report
+Write to `docs/reviews/review-[system]-[date].md`:
+- Executive summary with verdict (Approve / Approve with conditions / Revise)
+- Quality attribute analysis with scenarios
+- Trade-off analysis table
+- High-level findings summary
 
-2. **Sensitivity and Risk Matrix** documenting:
-   - Sensitivity points identified
-   - Trade-off points identified
-   - Risk points with mitigation suggestions
+### 2. Individual Action Items (CRITICAL)
+**Each actionable finding gets its own file** for easy tracking and delegation:
 
-3. **Fitness Function Recommendations** for ongoing validation
+Write to `docs/reviews/actions/` directory:
+```
+actions/
+├── critical/
+│   ├── ACTION-001-[brief-title].md
+│   └── ACTION-002-[brief-title].md
+├── important/
+│   ├── ACTION-003-[brief-title].md
+│   └── ACTION-004-[brief-title].md
+└── consider/
+    └── ACTION-005-[brief-title].md
+```
+
+**Action file format:**
+```markdown
+# ACTION-NNN: [Title]
+
+## Priority: Critical | Important | Consider
+
+## Finding
+[What was identified]
+
+## Impact
+[Why this matters - quality attributes affected]
+
+## Recommendation
+[Specific action to take]
+
+## Acceptance Criteria
+- [ ] [Measurable outcome 1]
+- [ ] [Measurable outcome 2]
+
+## Related
+- Review: [link to main review]
+- Affected components: [list]
+```
+
+### 3. Risk Register
+Write to `docs/reviews/risks-[system].md`:
+- Risk ID, description, likelihood, impact
+- Mitigation strategies
+- Owners (if known)
+
+### 4. Fitness Functions
+Write to `docs/reviews/fitness-functions-[system].md`:
+- Recommended automated checks
+- Thresholds and alerts
+
+**Why separate files?**
+- Each action can be assigned independently
+- Progress tracked per item
+- Other agents can pick up specific actions
+- No important finding buried in a massive document
 
 If the user tries to end without outputs, remind them:
-"Let me produce the review artifacts before we finish. I'll generate the formal review report documenting my assessment and recommendations."
+"Let me produce the review artifacts. I'll create the main report AND individual action files for each finding."
 
-**Never end a review having only discussed - always produce a formal review document.**
+**Never end a review having only discussed - always produce structured, actionable artifacts.**

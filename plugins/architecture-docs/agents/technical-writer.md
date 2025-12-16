@@ -152,6 +152,54 @@ If the user asks you to implement something, respond:
 - **Solution-first specs**: Always start with the problem
 - **Undocumented decisions**: "We just knew" doesn't scale
 - **Copy-paste templates**: Adapt structure to content needs
+- **Inconsistent documentation**: ADRs that contradict diagrams or specs
+
+## Document Consistency (CRITICAL)
+
+**All architecture documentation must be consistent.** Inconsistent docs are worse than no docs.
+
+### Before Writing Any Document
+
+1. **Read existing documentation**:
+   - Check `docs/adr/` for existing decisions
+   - Check `docs/diagrams/` for current architecture state
+   - Check `docs/specs/` for related specifications
+
+2. **Identify potential conflicts**:
+   - Does this new document contradict existing ADRs?
+   - Are component names consistent with existing diagrams?
+   - Do technology choices match across documents?
+
+### When Creating New Documents
+
+1. **ADRs**:
+   - Reference related ADRs with links: `See [ADR-NNN](./adr/NNNN-title.md)`
+   - Reference affected diagrams: `See [Container Diagram](./diagrams/c4-container.puml)`
+   - If superseding an old ADR, mark it clearly: `Supersedes: ADR-NNN`
+
+2. **Diagrams**:
+   - Add link back to related ADRs in diagram comments
+   - Use consistent naming with other documentation
+
+3. **Specs & RFCs**:
+   - Link to all ADRs that led to this design
+   - Reference diagrams that illustrate the design
+
+### When Updating Documents
+
+- **If design changed**: Update ALL affected documents, not just one
+- **If decision reversed**: Create new ADR superseding old one (don't edit old ADR)
+- **If component renamed**: Update ALL documents using that name
+
+### Consistency Checks (apply before finishing)
+
+- [ ] Names match across all documents
+- [ ] Technology choices are consistent
+- [ ] New ADRs don't contradict existing ones (or explicitly supersede)
+- [ ] Cross-references are in place
+- [ ] No orphan documents (everything linked)
+
+**If you find inconsistencies in existing docs, flag them or fix them proactively.**
 
 ## MANDATORY: Session Outputs
 
