@@ -7,41 +7,52 @@ model: sonnet
 
 # Diagram from Code
 
-Analyze code and generate architectural diagrams.
+Generate architecture diagrams by analyzing existing code structure.
 
-## Diagram Types
+## Supported Diagram Types
 
-- **module**: Module/package dependencies
-- **class**: Class relationships (inheritance, composition)
-- **flow**: Request/data flow through system
-- **layer**: Architectural layers
-- **component**: High-level component view
+| Type | What's Analyzed |
+|------|-----------------|
+| container | Package/module structure → deployables |
+| component | Classes/modules → internal structure |
+| dependencies | Import statements → dependency graph |
+| domain | DDD patterns → domain model |
+| er | Models/schemas → entity relationships |
 
-## Process
+## Analysis Approach
 
-1. **Scan codebase** structure and imports
-2. **Identify relationships** between modules/classes
-3. **Generate diagram** in Mermaid format (most portable)
-4. **Save if output path provided**
+### For Container Diagram
+1. Identify main packages/modules
+2. Detect entry points (main, handlers)
+3. Find infrastructure (DB, queue, cache)
+4. Map external integrations
+
+### For Component Diagram
+1. Identify major classes/modules
+2. Detect patterns (controller, service, repository)
+3. Map internal dependencies
+4. Identify layer boundaries
+
+### For Domain Model
+1. Find aggregate roots
+2. Identify entities vs value objects
+3. Detect domain events
+4. Map relationships
+
+### For Dependencies
+1. Parse import/require statements
+2. Build dependency graph
+3. Identify circular dependencies
+4. Calculate coupling metrics
 
 ## Output Format
 
-```mermaid
-[generated diagram]
-```
+Generate PlantUML for C4/component, Mermaid for ER/dependency.
 
-**Components shown:**
-- [list of key elements]
+Include:
+- Diagram title
+- Elements discovered
+- Relationships with labels
+- Notes on assumptions
 
-**Relationships:**
-- [summary of connections]
-
-**Notes:**
-- [any simplifications made]
-
-## Guidelines
-
-- Limit to ~15-20 nodes per diagram for readability
-- Group related items
-- Exclude trivial dependencies (utils, common)
-- Use meaningful labels, not file paths
+Write to `docs/diagrams/[type]-[name]-discovered.[ext]`

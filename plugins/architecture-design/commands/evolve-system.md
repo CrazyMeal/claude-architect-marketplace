@@ -5,54 +5,70 @@ allowed-tools: Read, Grep, Glob, Write, AskUserQuestion
 model: opus
 ---
 
-# Evolve System Architecture
+# Architecture Evolution
 
-You are the `system-architect` engaging in an evolution session. Your goal is to take an *existing* architecture and propose safe, compliant changes to meet a new requirement.
+Evolve an existing architecture while respecting established decisions and constraints.
 
-## Workflow
+## Scope
 
-### 1. Context Ingestion (Automated)
-First, you MUST read the current state of the world:
-- `docs/architecture-overview.md` (or similar main doc)
-- `docs/adr/*.md` (to understand the "laws" of this system)
-- `docs/diagrams/` (to see the current structure)
+**DO**: Analyze impact, propose evolution, update diagrams, write ADRs for changes, respect existing decisions
 
-**Do not ask the user to paste files.** Use your tools to read them.
+**DON'T**: Write application code, ignore existing ADRs
 
-### 2. Constraint Analysis
-Analyze the user's requirement against the existing ADRs.
-- Does it require a new database? (Check data storage ADR)
-- Does it introduce a new language? (Check tech stack ADR)
-- Does it change deployment? (Check infrastructure ADR)
+**If asked to implement**: "Let's finalize the evolution plan first. Implementation is separate."
 
-**If a constraint is violated, you have two choices:**
-1.  **Refine**: Change the design to fit the constraint (Preferred).
-2.  **Supersede**: Explicitly propose a new ADR to overturn the old one (Requires strong justification).
+## Evolution Protocol
 
-### 3. Design the Evolution
-- Identify which *existing* components need modification.
-- Identify new components needed.
-- Determine impact on data models and APIs.
+### 1. Ingest Context First (MANDATORY)
 
-### 4. Produce Artifacts (Mandatory)
-You must write these to files:
+Before proposing changes, read:
+- `docs/architecture-overview.md` (if exists)
+- `docs/adr/*.md` - existing decisions
+- `docs/diagrams/*.puml` - current architecture
 
-1.  **Evolution Plan** (`docs/evolution/[date]-[feature].md`):
-    -   Summary of change
-    -   Impact analysis (Modified/New/Deleted components)
-    -   Migration steps
-2.  **Updated C4 Diagrams**:
-    -   Update existing `.puml` files (render diffs).
-3.  **ADR Updates**:
-    -   If representing a significant decision, draft a new ADR.
+### 2. Check Constraints
 
-## Example Usage
+Validate ideas against existing ADRs. ADRs are immutable unless you propose to supersede them with a new ADR.
 
-User: "We need to add a 'Team Mode' where users can compete in groups."
+### 3. Impact Analysis
 
-You:
-1.  Read `docs/adr/0002-data-storage.md` -> sees "D1 for relational, KV for fast reads".
-2.  Read `docs/architecture-overview.md` -> sees "Cloudflare Workers + Hono".
-3.  *Internal thought*: "I shouldn't propose a new microservice in Go on AWS. I should stick to Workers."
-4.  *Proposal*: "I recommend adding a `Teams` table to D1 and using KV for real-time team scores to keep latency low..."
-5.  *Output*: Writes `docs/evolution/2024-12-teams-feature.md` and updates `c4-container.puml`.
+For the proposed change, identify:
+- Components affected (add/modify/remove)
+- Diagrams requiring updates
+- ADRs that may need supersession
+- Quality attribute implications
+- Migration complexity
+
+### 4. Evolution Approach
+
+Consider patterns:
+- **Strangler fig**: Gradual replacement
+- **Branch by abstraction**: Interface-first migration
+- **Expand-contract**: Safe schema evolution
+- **Feature flags**: Gradual rollout
+
+### 5. Update ALL Affected Artifacts
+
+When design changes:
+- Update affected C4 diagrams
+- Update or supersede related ADRs
+- Update activity/sequence diagrams if flows change
+- Maintain cross-references
+
+## Dialogue Approach
+
+1. **Read existing docs** before proposing
+2. **Summarize current state** to confirm understanding
+3. **Propose evolution** with explicit impact
+4. **Discuss trade-offs** and migration approach
+5. **Update artifacts** comprehensively
+
+## Required Outputs
+
+Before ending, MUST write:
+- New/updated C4 diagrams reflecting evolution
+- New ADR documenting the evolution decision
+- Supersession of conflicting ADRs if needed
+- Evolution plan document if migration is complex
+
+If ending without artifacts: "Let me update the architecture artifacts to reflect this evolution."

@@ -7,74 +7,71 @@ model: sonnet
 
 # Request for Comments (RFC)
 
-Create an RFC for proposing significant changes.
+Create an RFC for major architectural proposals requiring discussion.
 
-## When to Use
+## When to Use RFC
 
-- Cross-team architectural changes
-- New system introductions
-- Major refactoring proposals
-- Process or standard changes
+- Major architectural changes
+- Cross-team initiatives
+- New technology adoption
+- Significant process changes
+- Breaking changes to APIs/contracts
 
-## Output Format
+## RFC Structure
 
 ```markdown
-# RFC: [Title]
+# RFC-[NUMBER]: [Title]
 
-**RFC Number:** [number]
-**Author(s):** [names]
-**Status:** Draft | Discussion | Final Comment | Accepted | Rejected
-**Created:** [date]
-**Updated:** [date]
+**Author:** [Name]
+**Date:** [YYYY-MM-DD]
+**Status:** Draft | Discussion | Accepted | Rejected | Superseded
 
 ## Summary
-[One paragraph executive summary]
+[2-3 sentence overview]
 
 ## Motivation
 [Why is this change needed? What problem does it solve?]
 
+## Background
+[Context needed to understand the proposal]
+
 ## Proposal
 
 ### Overview
-[High-level description of the proposed change]
+[High-level description]
 
 ### Detailed Design
-[Technical details of the proposal]
+[Technical details, diagrams]
 
-### Migration Strategy
-[How to transition from current state]
+### Migration Path
+[How to get from here to there]
 
 ## Drawbacks
-[Why should we NOT do this?]
+[Why might we NOT want to do this?]
 
-## Alternatives
+## Alternatives Considered
 
-### [Alternative A]
-[Description and why not chosen]
-
-### [Alternative B]
+### [Alternative 1]
 [Description and why not chosen]
 
 ## Unresolved Questions
-- [ ] [Question needing resolution before acceptance]
+- [Question for discussion]
 
 ## Future Possibilities
-[What does this enable in the future?]
+[What does this enable later?]
 
----
-
-## Discussion
-
-### [Date] - [Author]
-[Comment or concern]
-
-### [Date] - [Author]
-[Response or additional input]
+## References
+- [Related documents, external resources]
 ```
 
-## Guidelines
+## RFC Lifecycle
 
-- Assume readers have context but spell out assumptions
-- Focus on the "why" as much as the "what"
-- Be honest about drawbacks
-- Leave room for discussion
+1. **Draft**: Author writing
+2. **Discussion**: Open for feedback (set deadline)
+3. **Accepted**: Approved for implementation
+4. **Rejected**: Not proceeding (document why)
+5. **Superseded**: Replaced by another RFC
+
+## Output
+
+Write to `docs/rfcs/rfc-NNNN-[title].md`

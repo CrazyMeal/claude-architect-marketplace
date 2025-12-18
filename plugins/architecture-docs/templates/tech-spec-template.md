@@ -4,58 +4,51 @@
 **Date:** [YYYY-MM-DD]
 **Status:** Draft | Review | Approved
 
-## Overview
-[2-3 sentences describing what this spec covers and why it matters]
+## Problem Statement
+[What problem? Why now?]
 
 ## Goals
-- [ ] [Primary goal - what must be achieved]
-- [ ] [Secondary goal]
+- [Goal 1]
 
 ## Non-Goals
-- [What is explicitly out of scope]
+- [Out of scope]
 
-## Background
-[Context and history needed to understand this spec]
+## Quality Attributes
 
-## Detailed Design
+| Attribute | Requirement | Measurement |
+|-----------|-------------|-------------|
+| Performance | | |
+| Scalability | | |
+
+## Design
 
 ### Architecture
-[High-level architecture with diagram if helpful]
+[Diagrams, components]
 
 ### Data Model
-[Key entities, their relationships, and storage]
+[Schemas, relationships]
 
 ### API Design
-[Endpoints, methods, request/response formats]
-
-### Dependencies
-[External systems, libraries, services required]
+[Endpoints, contracts]
 
 ## Implementation Plan
 
-### Phase 1: [Name]
-- [ ] [Task 1]
-- [ ] [Task 2]
+### Phase 1
+- [Deliverables]
 
-### Phase 2: [Name]
-- [ ] [Task 1]
+## Operational Concerns
 
-## Security Considerations
-[Authentication, authorization, data protection, threat model]
+### Monitoring
+[Metrics, alerts]
+
+### Failure Modes
+[What can fail, recovery]
 
 ## Testing Strategy
-[Unit tests, integration tests, E2E tests, load tests]
-
-## Monitoring & Observability
-[Metrics to track, logs to capture, alerts to configure]
-
-## Rollout Plan
-[How this will be deployed, feature flags, rollback strategy]
+[Approach]
 
 ## Open Questions
-- [ ] [Question 1]
-- [ ] [Question 2]
+- [Question]
 
-## References
-- [Link to related spec]
-- [Link to external documentation]
+## Related
+- [ADRs, specs]

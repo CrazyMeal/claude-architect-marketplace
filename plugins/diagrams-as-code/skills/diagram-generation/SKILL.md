@@ -1,6 +1,6 @@
 ---
 name: diagram-generation
-description: Generate architecture diagrams when discussing system structure, flows, or documentation needs. Applies C4 model thinking and proper notation.
+description: Generate architecture diagrams when discussing system structure, flows, or documentation. Applies C4 thinking.
 allowed-tools: Read, Grep, Glob, Write
 model: opus
 ---
@@ -12,75 +12,54 @@ Create effective architecture visualizations during technical discussions.
 ## Activation Contexts
 
 - Discussing system structure or components
-- Explaining how systems interact
+- Explaining system interactions
 - Creating or reviewing documentation
-- Onboarding discussions about architecture
+- Onboarding discussions
 - Planning new features or systems
-- Requests for visualizations
 
-## Diagram Selection Logic
-
-Based on conversation context:
+## Diagram Selection
 
 | Discussion Topic | Diagram Type | Format |
 |-----------------|--------------|--------|
-| System scope, boundaries | C4 Context | PlantUML |
-| Tech stack, deployables | C4 Container | PlantUML |
+| System scope | C4 Context | PlantUML |
+| Tech stack | C4 Container | PlantUML |
 | Internal structure | C4 Component | PlantUML |
-| "What happens when..." | Sequence | Mermaid or PlantUML |
-| Business process | Activity/Flowchart | Mermaid |
-| Entity lifecycle | State diagram | Mermaid |
-| Data structure | ER or Domain model | Mermaid |
+| "What happens when..." | Sequence | PlantUML/Mermaid |
+| Business process | Activity | Mermaid |
+| Entity lifecycle | State | Mermaid |
+| Data structure | ER/Domain | Mermaid |
 | Infrastructure | Deployment | PlantUML |
 
 ## C4 Model Application
 
-Apply C4 thinking even in informal discussions:
+Reference `shared/c4-templates.md` for syntax.
 
-1. **Identify abstraction level**: Are we talking systems, containers, or components?
-2. **Respect boundaries**: Don't mix abstraction levels in one diagram
-3. **Name consistently**: Same element, same name everywhere
-4. **Show relationships**: What flows between elements, not just that they connect
+Key principles:
+1. Identify abstraction level
+2. Respect boundaries (don't mix levels)
+3. Name consistently across diagrams
+4. Show what flows, not just connections
 
 ## Generation Approach
 
-1. **Clarify purpose**: What should viewers understand after seeing this?
-2. **Identify audience**: Technical depth appropriate for viewers
-3. **Scope appropriately**: Include only what's needed for the purpose
-4. **Select format**: Mermaid for docs, PlantUML for C4, D2 for presentations
+1. **Clarify purpose**: What should viewers understand?
+2. **Identify audience**: Appropriate technical depth
+3. **Scope**: Include only what's needed
+4. **Select format**: PlantUML for C4, Mermaid for markdown docs
 5. **Keep focused**: One diagram, one message
-
-## Output Format
-
-When generating diagrams:
-
-```
-## [Diagram Title]
-
-**Purpose**: [What this communicates]
-**Audience**: [Who this is for]
-
-[Diagram code block]
-
-**Key takeaways**:
-- [Main insight 1]
-- [Main insight 2]
-
-**Related views**: [Other diagrams that complement this]
-```
 
 ## Quality Checks
 
-Before presenting a diagram, verify:
+Before finalizing:
 - [ ] Single clear purpose
 - [ ] Appropriate abstraction level
-- [ ] Meaningful labels (not just "calls" or "uses")
-- [ ] 7±2 elements (or clearly grouped)
+- [ ] Meaningful labels (not just "calls")
+- [ ] 7±2 elements (or grouped)
 - [ ] Consistent notation
 
 ## When Not to Diagram
 
-- Simple enough to explain in words
-- Will be outdated immediately
+- Simple enough for words
+- Will be immediately outdated
 - No clear audience
-- Premature (still exploring options)
+- Still exploring options

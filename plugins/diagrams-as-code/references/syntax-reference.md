@@ -1,4 +1,4 @@
-# Diagram Syntax Quick Reference
+# Diagram Syntax Reference
 
 ## Mermaid
 
@@ -6,10 +6,8 @@
 ```mermaid
 flowchart TD
     A[Start] --> B{Decision}
-    B -->|Yes| C[Action 1]
-    B -->|No| D[Action 2]
-    C --> E[End]
-    D --> E
+    B -->|Yes| C[Action]
+    B -->|No| D[Other]
 ```
 
 ### Sequence
@@ -21,19 +19,6 @@ sequenceDiagram
     B-->>A: Response
 ```
 
-### Class
-```mermaid
-classDiagram
-    class Animal {
-        +String name
-        +makeSound()
-    }
-    class Dog {
-        +bark()
-    }
-    Animal <|-- Dog
-```
-
 ### ER
 ```mermaid
 erDiagram
@@ -41,8 +26,21 @@ erDiagram
     ORDER ||--|{ ITEM : contains
 ```
 
+### State
+```mermaid
+stateDiagram-v2
+    [*] --> Draft
+    Draft --> Review
+    Review --> Approved
+    Review --> Draft
+    Approved --> [*]
+```
+
 ## PlantUML C4
 
+Reference `shared/c4-templates.md` for full C4 templates.
+
+Quick reference:
 ```plantuml
 @startuml
 !include C4_Container.puml
@@ -60,21 +58,20 @@ db: Database
 server -> db: queries
 ```
 
-## Shape Reference
+## Shape Reference (Mermaid)
 
-| Mermaid | Meaning |
-|---------|---------|
+| Syntax | Shape |
+|--------|-------|
 | [text] | Rectangle |
 | (text) | Rounded |
 | {text} | Diamond |
 | ([text]) | Stadium |
-| [[text]] | Subroutine |
 | [(text)] | Cylinder |
 
 ## Arrow Reference
 
 | Mermaid | PlantUML | Meaning |
 |---------|----------|---------|
-| --> | -> | Solid line |
-| -.-> | ..> | Dashed line |
-| -->> | ->> | Async/return |
+| --> | -> | Solid |
+| -.-> | ..> | Dashed |
+| -->> | ->> | Async |
