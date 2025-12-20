@@ -1,93 +1,69 @@
 ---
 description: Analyze dependencies for architectural implications, not just versions
 argument-hint: [package-file]
-allowed-tools: Read, Grep, Glob, Bash
+allowed-tools: Read, Grep, Glob, Bash, Write
 model: sonnet
 ---
 
-# Dependency Architecture Analysis
+# Dependency Analysis
 
-Go beyond version checking to understand architectural implications of dependencies.
+Analyze dependencies from an architectural perspective—beyond version checking.
 
-## Analysis Framework
+## Scope
 
-### 1. Dependency Classification
+**DO**: Analyze architectural implications of dependencies, assess lock-in risk, evaluate abstraction coverage
 
-**By Architectural Role**:
-- **Core domain**: Libraries that shape your domain model
-- **Infrastructure**: Database, messaging, HTTP clients
-- **Application framework**: The foundation (Spring, Express, etc.)
-- **Cross-cutting**: Logging, metrics, security
-- **Utility**: Helpers that could be replaced easily
+**DON'T**: Just list outdated packages—that's not architecture
 
-**By Coupling Level**:
-- **Deep integration**: Pervasive throughout codebase
-- **Adapter pattern**: Wrapped behind abstractions
-- **Isolated usage**: Contained to specific modules
-- **Transitive only**: Brought in by other deps
+## Analysis Dimensions
 
-### 2. Risk Assessment
+### 1. Coupling Assessment
+- Direct vs transitive dependencies
+- Abstraction coverage (are deps behind interfaces?)
+- Replacement difficulty
 
-**Vendor/Project Risk**:
-- Maintenance activity (commits, releases, response time)
-- Community health (contributors, adoption)
-- License implications
-- Funding/sustainability model
+### 2. Lock-in Risk
+| Risk Level | Characteristics |
+|------------|-----------------|
+| High | Direct usage, no abstraction, proprietary APIs |
+| Medium | Behind interface but migration costly |
+| Low | Commodity, multiple alternatives, abstracted |
 
-**Technical Risk**:
-- Breaking change history
-- API stability
-- Performance characteristics
+### 3. Architectural Impact
+- Framework dependencies (high coupling)
+- Infrastructure dependencies (medium coupling)
+- Utility dependencies (low coupling)
+
+### 4. Supply Chain Concerns
+- Maintenance status
 - Security track record
+- License compatibility
+- Community health
 
-**Coupling Risk**:
-- How painful would replacement be?
-- Are there abstraction layers protecting you?
-- Is business logic entangled with library idioms?
+### 5. Upgrade Path Assessment
+- Breaking change likelihood
+- Migration effort estimation
+- Test coverage for deps
 
-### 3. Architectural Implications
+## Output Format
 
-Consider how dependencies affect:
-- **Testability**: Do they make testing harder?
-- **Deployment**: Do they constrain how you deploy?
-- **Performance**: What's their runtime impact?
-- **Observability**: Do they integrate with your monitoring?
-- **Scalability**: Any single-instance assumptions?
+```markdown
+# Dependency Analysis: [Project]
 
-### 4. Strategic Concerns
+## Summary
+- Total dependencies: [N]
+- High-risk: [N]
+- Abstraction coverage: [%]
 
-- **Build vs buy evolution**: Should any deps become custom code?
-- **Consolidation opportunities**: Multiple libs doing similar things?
-- **Abstraction opportunities**: Where should you wrap dependencies?
-- **Upgrade paths**: Any deps blocking language/framework upgrades?
+## High-Risk Dependencies
+| Dependency | Risk | Reason | Mitigation |
+|------------|------|--------|------------|
 
-## Output Structure
+## Architectural Recommendations
+1. [Recommendation with rationale]
 
-```
-## Dependency Analysis
-
-### Overview
-- Total dependencies: [X direct, Y transitive]
-- Risk profile: [summary]
-
-### Architectural Dependencies
-| Dependency | Role | Coupling | Risk | Notes |
-|------------|------|----------|------|-------|
-| [name] | [core/infra/util] | [deep/wrapped/isolated] | [H/M/L] | [key concern] |
-
-### Strategic Concerns
-
-#### High-Risk Dependencies
-1. **[dep]**: [why risky, what to do]
-
-#### Abstraction Recommendations
-1. **[dep]**: [wrap because...]
-
-#### Consolidation Opportunities
-1. **[dep1, dep2]**: [overlap, recommendation]
-
-### Action Items
-- [ ] [prioritized action]
+## Lock-in Assessment
+[Analysis of vendor/framework lock-in]
 ```
 
-Focus on architectural implications, not just outdated versions.
+Write report to `docs/analysis/dependencies-[name].md`.

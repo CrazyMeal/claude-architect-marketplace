@@ -1,129 +1,82 @@
 ---
-description: Deep architectural analysis of a codebase - structure, patterns, coupling, and evolution opportunities
+description: Deep architectural analysis of a codebase - structure, patterns, coupling, and evolution
 argument-hint: [directory]
-allowed-tools: Read, Grep, Glob, Bash
+allowed-tools: Read, Grep, Glob, Bash, Write
 model: opus
 ---
 
-# Codebase Architecture Analysis
+# Codebase Analysis
 
-Perform a comprehensive architectural analysis suitable for informing strategic technical decisions.
+Comprehensive architectural analysis of an existing codebase.
 
-## Analysis Dimensions
+## Scope
+
+**DO**: Analyze structure, identify patterns/anti-patterns, assess coupling, evaluate evolution readiness, produce report with diagrams
+
+**DON'T**: Modify code, implement fixes
+
+## Analysis Framework
 
 ### 1. Structural Analysis
-- **Module boundaries**: Are they well-defined? Do they align with domain concepts?
-- **Dependency direction**: Do dependencies point toward abstractions? Any cycles?
-- **Layering discipline**: Is there consistent layering? Layer violations?
-- **Package cohesion**: Do modules have clear, single responsibilities?
+- Entry points and boundaries
+- Module/package organization
+- Layering discipline
+- Dependency direction (outside-in or violations)
 
-### 2. Domain Model Assessment
-- **Bounded context identification**: What domains exist? Are they explicit?
-- **Aggregate boundaries**: Are consistency boundaries clear?
-- **Domain language**: Is ubiquitous language present in the code?
-- **Anemic vs rich domain models**: Where does behavior live?
+### 2. Pattern Recognition
+Identify architectural style: layered, hexagonal, clean, vertical slice, microservices, event-driven, or hybrid.
 
-### 3. Architectural Pattern Recognition
-Identify which patterns are in use and how consistently:
-- Layered (strict vs relaxed)
-- Hexagonal/Ports & Adapters
-- Clean Architecture
-- Vertical Slice
-- Modular Monolith
-- Microservices (if multi-repo, analyze boundaries)
-- Event-driven elements
+Look for DDD tactical patterns: aggregates, repositories, domain events, value objects.
 
-### 4. Technical Debt Indicators
-Look for patterns that constrain future evolution:
-- **God classes/modules**: Too many responsibilities
-- **Shotgun surgery**: Changes ripple across many files
-- **Feature envy**: Modules reaching into others' internals
-- **Primitive obsession**: Domain concepts as primitives
-- **Inappropriate intimacy**: Tight coupling between modules
-- **Divergent change**: Single module changes for unrelated reasons
+### 3. Coupling Assessment
+- Afferent coupling (incoming dependencies)
+- Efferent coupling (outgoing dependencies)
+- Instability metric: Ce/(Ca+Ce)
+- Circular dependencies
 
-### 5. Coupling Analysis
-- **Afferent coupling (Ca)**: Who depends on this module?
-- **Efferent coupling (Ce)**: Who does this module depend on?
-- **Instability (I = Ce/(Ca+Ce))**: Is this module stable enough for its dependents?
-- **Abstractness**: Is abstraction level appropriate?
-- **Distance from main sequence**: Is there a balanced abstraction/stability?
+### 4. Anti-Pattern Detection
+- Distributed monolith indicators
+- God classes (high fan-in/fan-out)
+- Feature envy
+- Shotgun surgery patterns
+- Anemic domain model
 
-### 6. Testability Assessment
-- **Dependency injection**: Are dependencies injectable?
-- **Interface segregation**: Can components be tested in isolation?
-- **Side effects**: Are they contained and explicit?
-- **Test coverage patterns**: What's tested vs not?
+### 5. Technical Debt Inventory
+Categorize as: Reckless-Deliberate, Reckless-Inadvertent, Prudent-Deliberate, Prudent-Inadvertent
 
-### 7. Evolution Readiness
-- **Seams for change**: Where can the system be extended?
-- **Strangler fig readiness**: Could parts be extracted?
-- **Configuration flexibility**: What requires code changes vs config?
-- **Feature flag capability**: Is gradual rollout possible?
+### 6. Evolution Readiness
+- Seams for feature addition
+- Extraction feasibility
+- Test coverage quality
+- Configuration flexibility
 
-## Analysis Process
+## Required Outputs
 
-1. **Read key files first**:
-   - Package manifests (package.json, go.mod, pom.xml, etc.)
-   - Entry points and composition roots
-   - Configuration files
-   - Directory structure
+Write all outputs to files:
 
-2. **Map the architecture**:
-   - Identify modules/packages/services
-   - Trace key flows through the system
-   - Document external integrations
+| Artifact | Location |
+|----------|----------|
+| Analysis report | `docs/analysis/analysis-[name]-[date].md` |
+| Current state diagram | `docs/diagrams/c4-container-current-[name].puml` |
+| Dependency graph (if issues) | `docs/diagrams/dependencies-[name].puml` |
 
-3. **Assess quality dimensions**:
-   - Apply the analysis dimensions above
-   - Look for patterns and anti-patterns
-   - Note inconsistencies
+### Report Structure
+```markdown
+# Architecture Analysis: [Name]
 
-4. **Synthesize findings**:
-   - What's the current architectural style?
-   - Where are the pain points?
-   - What enables or constrains evolution?
+## Executive Summary
+[2-3 sentences: overall assessment]
 
-## Output Structure
+## Key Findings
+### [Finding 1]
+**Evidence**: [file:line references]
+**Impact**: [High/Medium/Low]
+**Recommendation**: [Action]
 
-```
-## Architecture Analysis: [project-name]
-
-### Executive Summary
-[2-3 sentences: What is this, what's its state, what's the key insight]
-
-### Current Architecture
-- **Style**: [identified pattern]
-- **Key insight**: [main observation]
-- **Maturity**: [evolving/stable/stagnant]
-
-### Domain Model
-- **Identified contexts**: [list with brief descriptions]
-- **Context relationships**: [how they interact]
-- **Model richness**: [anemic/mixed/rich]
-
-### Structural Health
-| Metric | Assessment | Evidence |
-|--------|------------|----------|
-| Coupling | [high/medium/low] | [specific example] |
-| Cohesion | [high/medium/low] | [specific example] |
-| Layering | [strict/relaxed/absent] | [specific example] |
-
-### Technical Debt Register
-| Debt Item | Impact | Effort | Priority |
-|-----------|--------|--------|----------|
-| [issue] | [H/M/L] | [H/M/L] | [1-5] |
-
-### Evolution Opportunities
-1. **[opportunity]**: [description, approach, benefit]
-
-### Risks
-1. **[risk]**: [description, likelihood, mitigation]
-
-### Recommended Actions
-1. [immediate action]
-2. [short-term action]
-3. [strategic action]
+## Patterns Identified
+## Anti-Patterns Detected
+## Technical Debt Assessment
+## Evolution Recommendations
 ```
 
-Focus on actionable insights. Reference specific files as evidence.
+If ending without artifacts: "Let me produce the analysis report and diagrams."

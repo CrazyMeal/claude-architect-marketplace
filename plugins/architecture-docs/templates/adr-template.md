@@ -3,33 +3,37 @@
 ## Status
 [Proposed | Accepted | Deprecated | Superseded by ADR-X]
 
-## Context
-[What is the issue that we're seeing that is motivating this decision or change?]
+## Date
+[YYYY-MM-DD]
 
-## Decision
-[What is the change that we're proposing and/or doing?]
+## Decision Makers
+[List participants]
 
-## Consequences
+## Context and Problem Statement
+[What is the issue motivating this decision?]
 
-### Positive
-- [Benefit 1]
-- [Benefit 2]
+## Decision Drivers
+* [Driver 1]
+* [Driver 2]
 
-### Negative
-- [Drawback 1]
-- [Drawback 2]
+## Considered Options
+1. [Option 1]
+2. [Option 2]
 
-### Neutral
-- [Side effect 1]
+## Decision Outcome
+**Chosen**: "[Option]", because [justification].
 
-## Alternatives Considered
+### Positive Consequences
+* [Benefit]
 
-### [Alternative 1 Name]
-- **Description:** [Brief description]
-- **Pros:** [Benefits]
-- **Cons:** [Drawbacks]
-- **Why rejected:** [Reason]
+### Negative Consequences
+* [Trade-off]
 
-## Related
-- [ADR-X: Related Decision]
-- [Link to relevant documentation]
+## Pros and Cons of Options
+
+### [Option 1]
+* Good, because [advantage]
+* Bad, because [disadvantage]
+
+## Links
+* [Related ADR or document]
