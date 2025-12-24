@@ -35,13 +35,27 @@ Create effective documentation that captures decisions, designs, and operational
 4. Capture consequences: Positive and negative
 5. Link related ADRs
 
-## Spec Approach
+## Spec Approach (Modular Output)
+
+Create specs as directories with focused files:
+
+```
+docs/specs/[feature]/
+├── README.md          # Overview, goals
+├── api.md             # API contracts
+├── data-model.md      # Schema, entities
+├── implementation.md  # Phases, tasks
+├── operations.md      # Monitoring, failures
+└── decisions.md       # ADR links
+```
 
 1. Start with problem: What and why now?
 2. Define QAs: Measurable requirements
-3. Design solution: Architecture, data, APIs
-4. Address operations: Deployment, monitoring, failures
-5. Plan implementation: Phases, migration
+3. Design solution: Architecture, data, APIs (separate files)
+4. Address operations: Deployment, monitoring, failures (separate file)
+5. Plan implementation: Phases, migration (separate file)
+
+Reference `shared/output-conventions.md` for full structure.
 
 ## Documentation Principles
 
@@ -58,4 +72,6 @@ Create effective documentation that captures decisions, designs, and operational
 - [ ] Alternatives explained
 - [ ] Next steps clear
 - [ ] Related docs linked
-- [ ] Diagrams support text
+- [ ] Diagrams in separate files (never embedded)
+- [ ] YAML frontmatter with related-diagrams and related-adrs
+- [ ] Cross-references use relative paths
