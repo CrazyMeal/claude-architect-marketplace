@@ -29,8 +29,6 @@ docs/rfcs/[rfc-number]-[title]/
 └── alternatives.md        # Considered alternatives with trade-offs
 ```
 
-Reference templates in `templates/rfc/` for each file format.
-
 ## File Purposes
 
 | File | Purpose | Reviewer Focus |

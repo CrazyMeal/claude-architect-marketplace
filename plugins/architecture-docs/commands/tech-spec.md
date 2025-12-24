@@ -30,8 +30,6 @@ docs/specs/[feature-name]/
 └── decisions.md           # Key decisions with rationale
 ```
 
-Reference templates in `templates/spec/` for each file format.
-
 ## File Purposes
 
 | File | Purpose | Implementation Agent Use |
