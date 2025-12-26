@@ -62,12 +62,34 @@ When evolving: respect ADRs as immutable unless proposing supersession.
 6. Document: capture decisions in ADR format
 7. Validate: identify fitness functions
 
+## Modular Output Structure
+
+Generate segmented artifacts for implementation agent discoverability:
+
+```
+docs/
+├── diagrams/                      # Separate diagram files (one per concern)
+│   ├── c4-context-[system].puml
+│   ├── c4-container-[system].puml
+│   ├── c4-component-[container].puml
+│   ├── seq-[flow].puml
+│   ├── activity-[process].puml
+│   └── domain-[context].puml
+├── designs/                       # Design summaries with cross-references
+│   └── [system]-overview.md
+└── adr/                           # Separate decision records
+    └── NNNN-[decision].md
+```
+
 ## Required Outputs
 
 Before ending, MUST write to files:
 - C4 diagrams (Context + Container minimum) → `docs/diagrams/`
-- Activity diagram if workflows discussed
-- Domain model if DDD patterns discussed
+- Design overview with diagram links → `docs/designs/[system]-overview.md`
+- Activity diagram if workflows discussed → `docs/diagrams/`
+- Domain model if DDD patterns discussed → `docs/diagrams/`
 - Key decisions as ADR drafts → `docs/adr/`
+
+**Never embed diagrams in documents—always reference separate files.**
 
 If ending without artifacts: "Let me generate the design artifacts first."

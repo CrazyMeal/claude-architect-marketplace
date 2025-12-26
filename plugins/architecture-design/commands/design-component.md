@@ -59,11 +59,31 @@ Reference `shared/c4-templates.md` for syntax.
 4. **Define integration**: How does it communicate?
 5. **Consider operations**: Scaling, monitoring, failure modes
 
+## Modular Output Structure
+
+Generate segmented artifacts for implementation agent discoverability:
+
+```
+docs/
+├── diagrams/                      # Separate diagram files
+│   ├── c4-component-[name].puml
+│   ├── domain-[name].puml
+│   ├── seq-[flow].puml
+│   └── state-[entity].puml
+├── designs/                       # Component design summary
+│   └── component-[name].md
+└── adr/                           # Decision records
+    └── NNNN-[decision].md
+```
+
 ## Required Outputs
 
 Before ending, MUST write:
 - C4 Component diagram → `docs/diagrams/c4-component-[name].puml`
 - Domain model → `docs/diagrams/domain-[name].puml`
+- Component design summary → `docs/designs/component-[name].md`
 - Key decisions as ADR if significant
+
+**Never embed diagrams in documents—always reference separate files.**
 
 If ending without artifacts: "Let me generate the component design artifacts first."

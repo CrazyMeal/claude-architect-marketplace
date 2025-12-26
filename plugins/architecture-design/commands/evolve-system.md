@@ -22,7 +22,8 @@ Evolve an existing architecture while respecting established decisions and const
 ### 1. Ingest Context First (MANDATORY)
 
 Before proposing changes, read:
-- `docs/architecture-overview.md` (if exists)
+- `docs/designs/*.md` - existing design summaries
+- `docs/specs/*/README.md` - spec overviews
 - `docs/adr/*.md` - existing decisions
 - `docs/diagrams/*.puml` - current architecture
 
@@ -63,12 +64,31 @@ When design changes:
 4. **Discuss trade-offs** and migration approach
 5. **Update artifacts** comprehensively
 
+## Modular Output Structure
+
+Update or create segmented artifacts:
+
+```
+docs/
+├── diagrams/                      # Update affected diagrams
+│   └── [updated].puml
+├── designs/                       # Update design summaries
+│   └── [system]-overview.md
+├── specs/[feature]/               # Update affected spec files
+│   └── [affected-file].md
+└── adr/                           # New evolution decision
+    └── NNNN-[evolution].md
+```
+
 ## Required Outputs
 
 Before ending, MUST write:
-- New/updated C4 diagrams reflecting evolution
-- New ADR documenting the evolution decision
+- New/updated C4 diagrams reflecting evolution → `docs/diagrams/`
+- Updated design overview → `docs/designs/`
+- New ADR documenting the evolution decision → `docs/adr/`
 - Supersession of conflicting ADRs if needed
-- Evolution plan document if migration is complex
+- Evolution plan if migration is complex → `docs/specs/[feature]/migration.md`
+
+**Never embed diagrams—update separate diagram files and verify cross-references.**
 
 If ending without artifacts: "Let me update the architecture artifacts to reflect this evolution."

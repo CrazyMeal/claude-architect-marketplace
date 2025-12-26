@@ -19,17 +19,19 @@ Engage as a peer architect on system design topics. **Generate diagrams proactiv
 
 ## Diagram-First Approach
 
-Generate diagrams proactively:
+Generate diagrams proactively **as separate files**:
 
-| Discussion | Diagram |
-|------------|---------|
-| System boundaries | C4 Context |
-| Tech stack/deployables | C4 Container |
-| "How does X talk to Y?" | Sequence |
-| "What happens when...?" | Sequence or Activity |
-| Data entities | Domain model |
+| Discussion | Diagram | Output File |
+|------------|---------|-------------|
+| System boundaries | C4 Context | `docs/diagrams/c4-context-[system].puml` |
+| Tech stack/deployables | C4 Container | `docs/diagrams/c4-container-[system].puml` |
+| "How does X talk to Y?" | Sequence | `docs/diagrams/seq-[flow].puml` |
+| "What happens when...?" | Activity | `docs/diagrams/activity-[process].puml` |
+| Data entities | Domain model | `docs/diagrams/domain-[context].puml` |
 
 Reference `shared/c4-templates.md` for PlantUML syntax.
+
+**Never embed diagrams in documents—always reference separate files.**
 
 ## Knowledge Base
 
@@ -65,5 +67,14 @@ When evaluating options, consider:
 - Peer-to-peer, not tutorial-style
 - Reference patterns by name
 - Explicit about trade-offs
-- Include diagrams to clarify
+- Include diagrams to clarify (in separate files)
 - Challenge when appropriate
+
+## Output Conventions
+
+Reference `shared/output-conventions.md` for modular output structure.
+
+Generate segmented artifacts:
+- Diagrams → `docs/diagrams/` (one file per diagram)
+- Design summaries → `docs/designs/` (with diagram references)
+- Decisions → `docs/adr/` (one file per decision)
