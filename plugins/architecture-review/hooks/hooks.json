@@ -1,0 +1,17 @@
+{
+  "description": "Workflow chaining: after an ADR is written, suggest a quick quality review",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "A file was just written. Check the file path. If it matches docs/adr/ (an Architecture Decision Record), suggest: 'ADR created — would you like a quick quality check with /review-adr? It verifies completeness and MADR structure using a lightweight model.' Only suggest this once per ADR file in this session. If the file is not an ADR, produce no output.",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "description": "Workflow chaining: after dependency manifests change, suggest architectural dependency analysis",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "A file was just written or edited. Check the file name. If it is a dependency manifest — package.json, go.mod, go.sum, requirements.txt, Pipfile, pyproject.toml, Cargo.toml, Gemfile, pom.xml, build.gradle, build.gradle.kts, composer.json, pubspec.yaml — suggest: 'Dependency manifest changed — would you like me to run /analyze-dependencies to assess architectural impact (lock-in risk, coupling, supply chain concerns)?' Only suggest this once per session. If the file is not a dependency manifest, produce no output.",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "description": "Workflow chaining: after a design session, suggest reviews and check that required artifacts were produced",
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Before stopping, check if this session involved architecture design work — system design, component design, or evolving an existing architecture. If it did, do two things: (1) Check for missing artifacts: were C4 diagrams written to docs/diagrams/? Was a design overview written to docs/designs/? Were ADRs written to docs/adr/? For each missing artifact, briefly mention it and offer to generate it — e.g. 'No C4 diagrams were produced — would you like me to generate them with /c4-diagram?' (2) If at least one design artifact was produced, suggest: 'Design artifacts are ready for review. Would you like me to run /review-architecture for a quality attribute analysis, or /risk-assessment to identify risks before implementation?' Keep the entire message concise — two to four lines. If this was not a design session, produce no output.",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}

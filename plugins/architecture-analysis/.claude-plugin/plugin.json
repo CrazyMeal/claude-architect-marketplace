@@ -1,6 +1,6 @@
 {
   "name": "architecture-analysis",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Analyze existing codebases and architectures to identify patterns, anti-patterns, and improvement opportunities.",
   "author": {
     "name": "Claude Architect",

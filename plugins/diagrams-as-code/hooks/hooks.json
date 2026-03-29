@@ -1,0 +1,17 @@
+{
+  "description": "Workflow chaining: after design docs are written without diagrams, suggest generating visual representations",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "A file was just written. Check the file path and content. If the file was written to docs/designs/, docs/specs/, or docs/rfcs/, and the file content contains no references to .puml, .mmd, or .d2 files and no links to docs/diagrams/, suggest: 'This document has no diagram references. Would you like me to generate a C4 diagram with /c4-diagram or a custom diagram with /diagram to make the architecture easier to communicate?' Keep it to one sentence. If the file already references diagrams, or is not a design/spec/RFC document, produce no output.",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
