@@ -1,6 +1,6 @@
 # Claude Architect Marketplace — Contributor Guide
 
-This repository is a **Claude Code plugin marketplace** containing 5 architecture plugins. When contributing, you are editing plugin definitions — skills, commands, agents, hooks, and shared knowledge — not application code.
+This repository is a **Claude Code plugin marketplace** containing 5 architecture plugins. When contributing, you are editing plugin definitions — skills, commands, agents, and shared knowledge — not application code.
 
 ## Repository Structure
 
@@ -31,7 +31,6 @@ plugins/<name>/
   agents/<agent>.md            # Agent persona definition
   skills/<skill>/SKILL.md      # Skill definition with trigger description
   commands/<command>.md        # Slash command prompt
-  hooks/hooks.json             # Workflow hooks (added in v1.5/1.6)
   references/                  # Reference docs loaded on demand (not all plugins)
   templates/                   # Templates loaded on demand (not all plugins)
 ```
@@ -49,38 +48,24 @@ Bump the **root marketplace version** (`.claude-plugin/plugin.json` + `.claude-p
 Current versions:
 | Plugin | Version |
 |--------|---------|
-| architecture-design | 1.6.0 |
-| architecture-docs | 1.6.0 |
-| architecture-analysis | 1.5.0 |
-| architecture-review | 1.5.0 |
-| diagrams-as-code | 1.5.0 |
-| Marketplace | 1.7.0 |
-
-## Hooks
-
-Each plugin has a `hooks/hooks.json` that chains workflow steps automatically. All hooks use `"type": "prompt"` (never command hooks). They are designed to **suggest, not force** — concise nudges toward the next pipeline step.
-
-Current hook purposes:
-- **architecture-design** — Stop hook: checks for missing artifacts after a design session, then suggests `/review-architecture`
-- **architecture-review** — PostToolUse: suggests `/review-adr` when an ADR is written to `docs/adr/`
-- **architecture-docs** — Stop hook: suggests `/adr` if decisions were made without documentation
-- **diagrams-as-code** — PostToolUse: suggests diagram generation when design docs lack visual references
-- **architecture-analysis** — PostToolUse: suggests `/analyze-dependencies` when dependency manifests change
-
-When adding a hook, keep the prompt concise and always include a guard: "If [condition not met], produce no output."
+| architecture-design | 1.7.0 |
+| architecture-docs | 1.7.0 |
+| architecture-analysis | 1.6.0 |
+| architecture-review | 1.6.0 |
+| diagrams-as-code | 1.6.0 |
+| Marketplace | 1.8.0 |
 
 ## Shared Knowledge
 
 `shared/` files are loaded on-demand (referenced explicitly in skill/command prompts). They are **not** auto-injected. Reference them only when the content is needed. Do not modify shared files unless the change applies across all plugins.
 
-`shared/output-conventions.md` is the **authoritative source** for where artifacts go (`docs/adr/`, `docs/diagrams/`, `docs/specs/`, `docs/rfcs/`, `docs/reviews/`). Hooks and commands must use these paths consistently.
+`shared/output-conventions.md` is the **authoritative source** for where artifacts go (`docs/adr/`, `docs/diagrams/`, `docs/specs/`, `docs/rfcs/`, `docs/reviews/`). Commands must use these paths consistently.
 
 ## Adding or Modifying a Plugin
 
 1. **New skill**: Add `skills/<skill-name>/SKILL.md` with a clear `description` trigger in the frontmatter. The description is how Claude decides when to activate the skill — make it specific.
 2. **New command**: Add `commands/<command>.md`. Commands are slash-command prompts, not code.
-3. **New hook**: Add or edit `hooks/hooks.json`. Use prompt-based hooks, include path guards to avoid cross-plugin noise, and keep suggestions to 1–2 lines.
-4. **Bump versions**: plugin `plugin.json` → `marketplace.json` entry → root `marketplace.json` version → root `plugin.json` version.
+3. **Bump versions**: plugin `plugin.json` → `marketplace.json` entry → root `marketplace.json` version → root `plugin.json` version.
 
 ## CI Validation
 

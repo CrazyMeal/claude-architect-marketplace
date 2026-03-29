@@ -1,6 +1,6 @@
 {
   "name": "architecture-review",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Review and critique architectural decisions against best practices, identify risks, and suggest improvements.",
   "author": {
     "name": "Claude Architect",
